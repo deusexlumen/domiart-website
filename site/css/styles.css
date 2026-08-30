@@ -2101,3 +2101,8 @@ body.nav-open .nav-toggle span::after {
     padding: 13px 16px;
   }
 }
+
+/* hidden-Attribut muss display-Regeln schlagen (z.B. .btn) */
+[hidden] {
+  display: none !important;
+}
