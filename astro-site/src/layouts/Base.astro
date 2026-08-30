@@ -1,0 +1,103 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Lightbox from '../components/Lightbox.astro';
+import StickyCta from '../components/StickyCta.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  robots?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  robots = 'index, follow',
+  ogTitle = title,
+  ogDescription = description,
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="keywords" content="Modernisierung Dortmund, Renovierung Dortmund, Sanierung Dortmund, Trockenbau, Malerarbeiten, Verputzarbeiten, Innenausbau, Entkernung, Entrümpelung, Badsanierung, Generalunternehmen Dortmund">
+  <meta name="author" content="DOMIART — Adrian Polaczek">
+  <meta name="robots" content={robots}>
+  <link rel="canonical" href={canonical}>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content={ogTitle}>
+  <meta property="og:description" content={ogDescription}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content="https://www.domiart-moresa.de/assets/img/og-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+
+  <!-- Fonts (lokal, DSGVO-konform) -->
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Strukturierte Daten: Lokales Unternehmen -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "GeneralContractor",
+    "name": "DOMIART — Adrian Polaczek",
+    "description": "Generalunternehmen in Dortmund für Modernisierung, Renovierung, Sanierung, Trockenbau, Malerarbeiten, Verputzarbeiten, Innenausbau, Entkernung und Entrümpelung.",
+    "url": "https://www.domiart-moresa.de/",
+    "telephone": "+49 155 68820575",
+    "email": "info@domiart-moresa.de",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Altumstr. 1",
+      "postalCode": "44265",
+      "addressLocality": "Dortmund",
+      "addressCountry": "DE"
+    },
+    "areaServed": ["Dortmund", "Ruhrgebiet", "Nordrhein-Westfalen"],
+    "knowsAbout": [
+      "Modernisierung", "Renovierung", "Sanierung", "Badsanierung",
+      "Trockenbau", "Malerarbeiten", "Verputzarbeiten", "Innenausbau",
+      "Entkernung", "Entrümpelung"
+    ],
+    "slogan": "Wir betreuen Ihr Projekt, als wäre es unser eigenes."
+  }
+  </script>
+
+  <slot name="head" />
+</head>
+<body>
+
+  <Header />
+
+  <main id="top">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <StickyCta />
+
+  <Lightbox />
+
+  <!-- Scripts (lokal) -->
+  <script is:inline src="/assets/vendor/lenis.min.js"></script>
+  <script is:inline src="/assets/vendor/gsap.min.js"></script>
+  <script is:inline src="/assets/vendor/ScrollTrigger.min.js"></script>
+  <script is:inline src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurze Umfrage — DOMIART Website</title>
+  <meta name="description" content="Kurze Rückfragen zur DOMIART Website — dauert nur 3 Minuten.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/umfrage.css">
+</head>
+<body>
+
+  <header class="site-header is-scrolled">
+    <div class="container">
+      <a href="index.html" class="brand" aria-label="DOMIART">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11"/><path d="M10 21v-5h4v5"/></svg>
+        </span>
+        DOMIART
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ Hero ============ -->
+    <section class="survey-hero">
+      <div class="container">
+        <p class="eyebrow eyebrow--light">Nur für Adrian</p>
+        <h1>Kurze Runde für deine Website.</h1>
+        <p class="lead lead--light">
+          Sechs Fragen, mehr Antippen als Tippen. Am Ende entsteht eine
+          fertige Nachricht — du schickst sie mit einem Klick in unseren
+          WhatsApp-Chat. Fertig.
+        </p>
+        <span class="survey-time">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Dauert ca. 3 Minuten
+        </span>
+      </div>
+    </section>
+
+    <!-- ============ Fortschritt ============ -->
+    <div class="survey-progress">
+      <div class="container">
+        <div class="survey-progress__bar"><div class="survey-progress__fill" data-progress-fill></div></div>
+        <span class="survey-progress__label" data-progress-label>0 von 6</span>
+      </div>
+    </div>
+
+    <div class="survey-body">
+      <div class="container">
+
+        <!-- ============ 1: USt-IdNr. ============ -->
+        <section class="survey-card" data-card="ust">
+          <div class="survey-card__q">
+            <span class="survey-card__num">1</span>
+            <h2>Deine Umsatzsteuer-ID</h2>
+          </div>
+          <p class="survey-card__hint">
+            Pflichtangabe fürs Impressum. Steht auf dem Gewerbeschein oder
+            Steuerbescheid und fängt mit „DE" an.
+          </p>
+          <div class="survey-field">
+            <input type="text" class="survey-input" data-field="ust" placeholder="DE 123 456 789" autocomplete="off">
+          </div>
+          <div class="survey-pills">
+            <button type="button" class="survey-pill" data-q="ust-spaeter" data-value="schicke ich später">Schicke ich später nach</button>
+          </div>
+        </section>
+
+        <!-- ============ 2: Projekte ============ -->
+        <section class="survey-card" data-card="projekte">
+          <div class="survey-card__q">
+            <span class="survey-card__num">2</span>
+            <h2>Welche Fotos gehören zusammen?</h2>
+          </div>
+          <p class="survey-card__hint">
+            In den Übersichten hat jedes Foto eine blaue Nummer. Tippe eine
+            Übersicht zum Vergrößern an und trag einfach die Nummern ein —
+            1 bis 3 Projekte reichen völlig.
+          </p>
+
+          <div class="survey-sheets">
+            <img src="assets/img/umfrage/uebersicht-1.jpg" alt="Foto-Übersicht 1" loading="lazy">
+            <img src="assets/img/umfrage/uebersicht-2.jpg" alt="Foto-Übersicht 2" loading="lazy">
+            <img src="assets/img/umfrage/uebersicht-3.jpg" alt="Foto-Übersicht 3" loading="lazy">
+          </div>
+
+          <div class="survey-project" data-project="1">
+            <p class="survey-project__title">Projekt 1</p>
+            <div class="survey-field">
+              <label>Stadtteil / Ort</label>
+              <input type="text" class="survey-input" data-field="p1-ort" placeholder="z. B. Hörde">
+            </div>
+            <div class="survey-field">
+              <label>Foto-Nummern</label>
+              <input type="text" class="survey-input" data-field="p1-fotos" placeholder="z. B. 26, 30, 45, 53">
+            </div>
+            <div class="survey-field">
+              <label>Was wurde gemacht? (kurz)</label>
+              <input type="text" class="survey-input" data-field="p1-was" placeholder="z. B. Bad komplett saniert">
+            </div>
+            <div class="survey-field">
+              <label>Wie lange hat es gedauert?</label>
+              <div class="survey-pills">
+                <button type="button" class="survey-pill" data-q="p1-dauer" data-value="bis 1 Woche">bis 1 Woche</button>
+                <button type="button" class="survey-pill" data-q="p1-dauer" data-value="1–2 Wochen">1–2 Wo.</button>
+                <button type="button" class="survey-pill" data-q="p1-dauer" data-value="2–4 Wochen">2–4 Wo.</button>
+                <button type="button" class="survey-pill" data-q="p1-dauer" data-value="über 4 Wochen">4+ Wo.</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-project" data-project="2" hidden>
+            <p class="survey-project__title">Projekt 2</p>
+            <div class="survey-field">
+              <label>Stadtteil / Ort</label>
+              <input type="text" class="survey-input" data-field="p2-ort" placeholder="z. B. Wambel">
+            </div>
+            <div class="survey-field">
+              <label>Foto-Nummern</label>
+              <input type="text" class="survey-input" data-field="p2-fotos" placeholder="z. B. 29, 33, 86">
+            </div>
+            <div class="survey-field">
+              <label>Was wurde gemacht? (kurz)</label>
+              <input type="text" class="survey-input" data-field="p2-was" placeholder="z. B. Zaun + Sichtschutz">
+            </div>
+            <div class="survey-field">
+              <label>Wie lange hat es gedauert?</label>
+              <div class="survey-pills">
+                <button type="button" class="survey-pill" data-q="p2-dauer" data-value="bis 1 Woche">bis 1 Woche</button>
+                <button type="button" class="survey-pill" data-q="p2-dauer" data-value="1–2 Wochen">1–2 Wo.</button>
+                <button type="button" class="survey-pill" data-q="p2-dauer" data-value="2–4 Wochen">2–4 Wo.</button>
+                <button type="button" class="survey-pill" data-q="p2-dauer" data-value="über 4 Wochen">4+ Wo.</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-project" data-project="3" hidden>
+            <p class="survey-project__title">Projekt 3</p>
+            <div class="survey-field">
+              <label>Stadtteil / Ort</label>
+              <input type="text" class="survey-input" data-field="p3-ort" placeholder="z. B. Innenstadt">
+            </div>
+            <div class="survey-field">
+              <label>Foto-Nummern</label>
+              <input type="text" class="survey-input" data-field="p3-fotos" placeholder="z. B. 60, 61, 65">
+            </div>
+            <div class="survey-field">
+              <label>Was wurde gemacht? (kurz)</label>
+              <input type="text" class="survey-input" data-field="p3-was" placeholder="z. B. Dachbad gefliest">
+            </div>
+            <div class="survey-field">
+              <label>Wie lange hat es gedauert?</label>
+              <div class="survey-pills">
+                <button type="button" class="survey-pill" data-q="p3-dauer" data-value="bis 1 Woche">bis 1 Woche</button>
+                <button type="button" class="survey-pill" data-q="p3-dauer" data-value="1–2 Wochen">1–2 Wo.</button>
+                <button type="button" class="survey-pill" data-q="p3-dauer" data-value="2–4 Wochen">2–4 Wo.</button>
+                <button type="button" class="survey-pill" data-q="p3-dauer" data-value="über 4 Wochen">4+ Wo.</button>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="survey-add-project" data-add-project>
+            + Weiteres Projekt hinzufügen
+          </button>
+        </section>
+
+        <!-- ============ 3: Vorher/Nachher ============ -->
+        <section class="survey-card" data-card="ba">
+          <div class="survey-card__q">
+            <span class="survey-card__num">3</span>
+            <h2>Sind das Vorher und Nachher vom selben Bad?</h2>
+          </div>
+          <div class="survey-ba">
+            <figure>
+              <img src="assets/img/vorher.jpg" alt="Altes blaues Badezimmer — Foto 76" loading="lazy">
+              <figcaption>Vorher · 76</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/img/nachher.jpg" alt="Neues weißes Badezimmer — Foto 84" loading="lazy">
+              <figcaption>Nachher · 84</figcaption>
+            </figure>
+          </div>
+          <div class="survey-pills">
+            <button type="button" class="survey-pill" data-q="ba" data-value="Ja, gleiches Bad">Ja, gleiches Bad</button>
+            <button type="button" class="survey-pill" data-q="ba" data-value="Nein, verschiedene Projekte">Nein, verschiedene</button>
+            <button type="button" class="survey-pill" data-q="ba" data-value="Weiß ich nicht mehr genau">Weiß nicht</button>
+          </div>
+        </section>
+
+        <!-- ============ 4: Google-Bewertungen ============ -->
+        <section class="survey-card" data-card="google">
+          <div class="survey-card__q">
+            <span class="survey-card__num">4</span>
+            <h2>Hast du Google-Bewertungen?</h2>
+          </div>
+          <p class="survey-card__hint">
+            Gemeint ist dein Google-Unternehmensprofil. Wenn ja: Screenshot
+            einfach später im Chat schicken — ich baue die besten Stimmen ein.
+          </p>
+          <div class="survey-pills">
+            <button type="button" class="survey-pill" data-q="google" data-value="Ja, Screenshot kommt im Chat">Ja, habe ich</button>
+            <button type="button" class="survey-pill" data-q="google" data-value="Nein, gibt es noch nicht">Nein, noch nicht</button>
+          </div>
+        </section>
+
+        <!-- ============ 5: Foto von Adrian ============ -->
+        <section class="survey-card" data-card="foto">
+          <div class="survey-card__q">
+            <span class="survey-card__num">5</span>
+            <h2>Ein Foto von dir für „Über uns"</h2>
+          </div>
+          <p class="survey-card__hint">
+            Kunden vertrauen Gesichtern. Auf der Übersicht gibt es Foto 74
+            (Mann mit Schleifmaschine) — falls das du bist, nehmen wir einfach
+            das.
+          </p>
+          <div class="survey-pills">
+            <button type="button" class="survey-pill" data-q="foto" data-value="Ich schicke ein Foto im Chat">Schicke ich im Chat</button>
+            <button type="button" class="survey-pill" data-q="foto" data-value="Foto 74 bin ich — nehmt das">Foto 74 bin ich</button>
+            <button type="button" class="survey-pill" data-q="foto" data-value="Lieber kein Foto von mir">Lieber nicht</button>
+          </div>
+        </section>
+
+        <!-- ============ 6: Erreichbarkeit ============ -->
+        <section class="survey-card" data-card="zeiten">
+          <div class="survey-card__q">
+            <span class="survey-card__num">6</span>
+            <h2>Erreichbarkeit auf der Website</h2>
+          </div>
+          <p class="survey-card__hint">
+            Auf der Seite steht aktuell: „Mo–Sa nach Vereinbarung — Termine
+            auch abends möglich."
+          </p>
+          <div class="survey-pills">
+            <button type="button" class="survey-pill" data-q="zeiten" data-value="Passt so">Passt so</button>
+            <button type="button" class="survey-pill" data-q="zeiten" data-value="__custom__">Bitte ändern in…</button>
+          </div>
+          <div class="survey-field" data-zeiten-custom hidden style="margin-top:14px;">
+            <input type="text" class="survey-input" data-field="zeiten-text" placeholder="z. B. Mo–Fr 8–17 Uhr">
+          </div>
+        </section>
+
+        <!-- ============ Absenden ============ -->
+        <section class="survey-send" data-card="send">
+          <h2>Fertig? Dann ab damit. 🚀</h2>
+          <p>
+            Hier ist deine fertige Nachricht — sie aktualisiert sich live,
+            während du antwortest. Nichts muss vollständig sein: Schick
+            einfach, was du hast.
+          </p>
+          <div class="survey-summary" data-summary></div>
+          <div class="survey-send__actions">
+            <button type="button" class="btn btn--primary" data-share>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="m16 6-4-4-4 4M12 2v13"/></svg>
+              In WhatsApp teilen
+            </button>
+            <button type="button" class="btn btn--ghost" data-copy>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span data-copy-label>Text kopieren</span>
+            </button>
+          </div>
+          <p class="survey-send__note">
+            „Teilen" öffnet auf dem Handy direkt WhatsApp. Am PC: kopieren
+            und in den Chat einfügen.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Zoom-Overlay für Foto-Übersichten -->
+  <div class="sheet-zoom" data-zoom>
+    <img src="" alt="Foto-Übersicht vergrößert">
+    <span class="sheet-zoom__hint">Tippen zum Schließen</span>
+  </div>
+
+  <script>
+  (function () {
+    "use strict";
+
+    var state = {
+      ust: "",
+      "ust-spaeter": null,
+      projekte: [],
+      ba: null,
+      google: null,
+      foto: null,
+      zeiten: null,
+      zeitenText: ""
+    };
+
+    var summaryEl = document.querySelector("[data-summary]");
+    var progressFill = document.querySelector("[data-progress-fill]");
+    var progressLabel = document.querySelector("[data-progress-label]");
+
+    /* ---------- Pill-Auswahl ---------- */
+    document.querySelectorAll(".survey-pill").forEach(function (pill) {
+      pill.addEventListener("click", function () {
+        var q = pill.getAttribute("data-q");
+        var value = pill.getAttribute("data-value");
+
+        // gleiche Gruppe deselektieren
+        document.querySelectorAll('.survey-pill[data-q="' + q + '"]').forEach(function (p) {
+          p.classList.toggle("is-selected", p === pill);
+        });
+
+        if (q === "ust-spaeter") {
+          state["ust-spaeter"] = value;
+          document.querySelector('[data-field="ust"]').value = "";
+          state.ust = "";
+        } else if (q === "zeiten") {
+          if (value === "__custom__") {
+            state.zeiten = "custom";
+            document.querySelector("[data-zeiten-custom]").hidden = false;
+          } else {
+            state.zeiten = value;
+            document.querySelector("[data-zeiten-custom]").hidden = true;
+            state.zeitenText = "";
+          }
+        } else if (/-dauer$/.test(q)) {
+          var idx = parseInt(q.charAt(1), 10) - 1;
+          state.projekte[idx] = state.projekte[idx] || {};
+          state.projekte[idx].dauer = value;
+        } else {
+          state[q] = value;
+        }
+        update();
+      });
+    });
+
+    /* ---------- Textfelder ---------- */
+    document.querySelectorAll(".survey-input").forEach(function (input) {
+      input.addEventListener("input", function () {
+        var field = input.getAttribute("data-field");
+        if (field === "ust") {
+          state.ust = input.value;
+          if (input.value.trim()) {
+            state["ust-spaeter"] = null;
+            document.querySelectorAll('.survey-pill[data-q="ust-spaeter"]').forEach(function (p) {
+              p.classList.remove("is-selected");
+            });
+          }
+        } else if (field === "zeiten-text") {
+          state.zeitenText = input.value;
+        } else if (/^p\d-/.test(field)) {
+          var idx = parseInt(field.charAt(1), 10) - 1;
+          var key = field.slice(3); // ort | fotos | was
+          state.projekte[idx] = state.projekte[idx] || {};
+          state.projekte[idx][key] = input.value;
+        }
+        update();
+      });
+    });
+
+    /* ---------- Projekte hinzufügen ---------- */
+    var addBtn = document.querySelector("[data-add-project]");
+    var visibleProjects = 1;
+    addBtn.addEventListener("click", function () {
+      if (visibleProjects < 3) {
+        visibleProjects++;
+        document.querySelector('[data-project="' + visibleProjects + '"]').hidden = false;
+        if (visibleProjects >= 3) addBtn.hidden = true;
+      }
+    });
+
+    /* ---------- Foto-Zoom ---------- */
+    var zoom = document.querySelector("[data-zoom]");
+    var zoomImg = zoom.querySelector("img");
+    document.querySelectorAll(".survey-sheets img").forEach(function (img) {
+      img.addEventListener("click", function () {
+        zoomImg.src = img.src;
+        zoom.classList.add("is-open");
+      });
+    });
+    zoom.addEventListener("click", function () {
+      zoom.classList.remove("is-open");
+    });
+
+    /* ---------- Zusammenfassung + Fortschritt ---------- */
+    function buildText() {
+      var lines = ["Hallo! Hier meine Antworten zur Website:", ""];
+
+      // 1
+      var ust = state.ust.trim() ? state.ust.trim()
+        : state["ust-spaeter"] ? "schicke ich später nach" : "—";
+      lines.push("1) USt-IdNr.: " + ust);
+
+      // 2
+      lines.push("2) Projekte:");
+      var hasProject = false;
+      state.projekte.forEach(function (p) {
+        if (!p) return;
+        var ort = (p.ort || "").trim();
+        var fotos = (p.fotos || "").trim();
+        var was = (p.was || "").trim();
+        if (!ort && !fotos && !was) return;
+        hasProject = true;
+        var line = "   • " + (ort || "?") + " — Fotos: " + (fotos || "?");
+        if (was) line += " | " + was;
+        if (p.dauer) line += " | Dauer: " + p.dauer;
+        lines.push(line);
+      });
+      if (!hasProject) lines.push("   • —");
+
+      // 3-6
+      lines.push("3) Vorher/Nachher (Foto 76 → 84): " + (state.ba || "—"));
+      lines.push("4) Google-Bewertungen: " + (state.google || "—"));
+      lines.push("5) Foto von mir: " + (state.foto || "—"));
+      var zeiten = state.zeiten === "custom"
+        ? "Bitte ändern in: " + (state.zeitenText.trim() || "—")
+        : (state.zeiten || "—");
+      lines.push("6) Erreichbarkeit: " + zeiten);
+
+      lines.push("");
+      lines.push("(Foto und ggf. Screenshot der Bewertungen schicke ich direkt hier im Chat.)");
+      return lines.join("\n");
+    }
+
+    function countDone() {
+      var n = 0;
+      if (state.ust.trim() || state["ust-spaeter"]) n++;
+      var p1 = state.projekte[0];
+      if (p1 && ((p1.ort || "").trim() || (p1.fotos || "").trim())) n++;
+      if (state.ba) n++;
+      if (state.google) n++;
+      if (state.foto) n++;
+      if (state.zeiten && (state.zeiten !== "custom" || state.zeitenText.trim())) n++;
+      return n;
+    }
+
+    function update() {
+      summaryEl.textContent = buildText();
+      var done = countDone();
+      progressFill.style.width = (done / 6 * 100) + "%";
+      progressLabel.textContent = done + " von 6";
+      var cards = {
+        ust: state.ust.trim() || state["ust-spaeter"],
+        projekte: state.projekte[0] && ((state.projekte[0].ort || "").trim() || (state.projekte[0].fotos || "").trim()),
+        ba: state.ba,
+        google: state.google,
+        foto: state.foto,
+        zeiten: state.zeiten && (state.zeiten !== "custom" || state.zeitenText.trim())
+      };
+      Object.keys(cards).forEach(function (key) {
+        var card = document.querySelector('[data-card="' + key + '"]');
+        if (card) card.classList.toggle("is-done", !!cards[key]);
+      });
+    }
+
+    /* ---------- Teilen / Kopieren ---------- */
+    document.querySelector("[data-share]").addEventListener("click", function () {
+      var text = buildText();
+      if (navigator.share) {
+        navigator.share({ title: "DOMIART Umfrage", text: text }).catch(function () {});
+      } else {
+        copyText(text, true);
+      }
+    });
+
+    document.querySelector("[data-copy]").addEventListener("click", function () {
+      copyText(buildText(), true);
+    });
+
+    function copyText(text, feedback) {
+      function done() {
+        if (!feedback) return;
+        var label = document.querySelector("[data-copy-label]");
+        var old = label.textContent;
+        label.textContent = "Kopiert ✓";
+        setTimeout(function () { label.textContent = old; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { fallback(); done(); });
+      } else {
+        fallback(); done();
+      }
+      function fallback() {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+    }
+
+    update();
+  })();
+  </script>
+</body>
+</html>

@@ -2,13 +2,11 @@
 IMG-*.jpg
 VID-*.mp4
 
-# Noch in Migration (wird separat hinzugefügt, sobald verifiziert)
-astro-site/
-
 # Build & Dependencies
 node_modules/
 dist/
 .vercel/
+.env*
 
 # Test-Artefakte
 .playwright-mcp/

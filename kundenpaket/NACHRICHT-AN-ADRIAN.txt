@@ -1,31 +1,21 @@
 Hallo Adrian! 👋
 
-Deine neue Website ist fast fertig — sie sieht richtig stark aus. Damit ich sie komplett fertig machen und online stellen kann, brauche ich nur noch ein paar Kleinigkeiten von dir.
+Deine neue Website ist fast fertig — sie sieht richtig stark aus. Bevor sie online geht, brauche ich nur noch ein paar Kleinigkeiten von dir.
 
-So einfach geht's: Einfach auf diese Nachricht antworten. Kurze Stichpunkte reichen, eine Sprachnachricht geht auch. Du musst nicht alles auf einmal schicken — schick einfach, was du hast.
+Am einfachsten geht's über diesen Link (dauert ca. 3 Minuten, am Handy einfach durchtippen):
 
-1️⃣ Umsatzsteuer-ID (Pflichtangabe im Impressum)
-Steht auf deinem Gewerbeschein oder Steuerbescheid, fängt mit „DE" an. Einfach als Text schicken.
+👉 https://domiart-website.vercel.app/umfrage.html
 
-2️⃣ Fotos den Projekten zuordnen
-Anbei 3 Übersichtsbilder — jedes Foto hat eine blaue Nummer. Schreib mir einfach, welche Nummern zum selben Projekt gehören, zum Beispiel so:
-„Bad Hörde: 26, 30, 45, 53"
-„Zaun: 29, 33, 86"
-2–3 Projekte reichen völlig. Wenn du magst, je eine Zeile dazu: Stadtteil, was gemacht wurde, wie lange es gedauert hat.
+Da drin:
+• Deine Umsatzsteuer-ID (Pflicht fürs Impressum)
+• Welche Fotos zu welchem Projekt gehören (alle Fotos sind nummeriert — du tippst nur Nummern ein)
+• Ob das alte blaue Bad und das neue weiße vom selben Projekt sind
+• Ob du Google-Bewertungen hast
+• Ein Foto von dir für „Über uns"
+• Ob die Erreichbarkeit auf der Seite so passt
 
-3️⃣ Vorher/Nachher-Check
-Das alte blaue Bad (Nummer 76) und das neue weiße Bad (Nummer 84) — sind die vom selben Projekt? Ein „ja" oder „nein" reicht.
+Am Ende drückst du auf „In WhatsApp teilen" — deine Antworten kommen dann automatisch fertig formatiert hier an. Du musst nichts selbst schreiben.
 
-4️⃣ Google-Bewertungen
-Hast du ein Google-Unternehmensprofil mit Bewertungen? Dann schick mir einen Screenshot — ich baue die besten Stimmen ein. Wenn nicht: kurz sagen, dann lassen wir den Bereich weg.
+Nicht alles auf einmal nötig — schick einfach, was du hast. Ein Foto von dir und den Screenshot der Bewertungen (falls vorhanden) schickst du danach einfach direkt hier in den Chat.
 
-5️⃣ Ein Foto von dir
-Für den „Über uns"-Bereich wäre ein gutes Bild von dir super (auf der Baustelle oder Portrait, Handyfoto reicht). Einfach hier reinschicken.
-
-6️⃣ Erreichbarkeit
-Auf der Seite steht: „Mo–Sa nach Vereinbarung, Termine auch abends möglich." Passt das so? Ja/Nein reicht.
-
-7️⃣ Domain (nur zur Info — jetzt noch nichts zu tun)
-Deine Domain läuft bei IONOS. Fürs Onlinestellen brauche ich später einmal kurz die Zugangsdaten oder wir machen einen 10-Minuten-Termin, bei dem du sie selbst eingibst.
-
-Das war's schon! Sobald ich das habe, geht deine Seite live. 🚀
+Danke dir! Sobald das durch ist, geht die Seite live. 🚀
