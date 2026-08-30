@@ -1,0 +1,18 @@
+# Roh-Material (Quellfotos/Videos — bleiben lokal)
+IMG-*.jpg
+VID-*.mp4
+
+# Noch in Migration (wird separat hinzugefügt, sobald verifiziert)
+astro-site/
+
+# Build & Dependencies
+node_modules/
+dist/
+.vercel/
+
+# Test-Artefakte
+.playwright-mcp/
+
+# OS
+.DS_Store
+Thumbs.db
