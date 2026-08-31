@@ -12,6 +12,9 @@ interface Props {
   robots?: string;
   ogTitle?: string;
   ogDescription?: string;
+  /* Seitenspezifisches Social-Preview (1200x630, bewusst JPEG wegen  */
+  /* Crawler-Kompatibilitaet). Ohne Angabe das generische Markenbild. */
+  ogImage?: string;
 }
 
 const {
@@ -21,7 +24,10 @@ const {
   robots = 'index, follow',
   ogTitle = title,
   ogDescription = description,
+  ogImage = '/assets/img/og-image.jpg',
 } = Astro.props;
+
+const ogImageUrl = new URL(ogImage, 'https://www.domiart-moresa.de/').href;
 ---
 <!DOCTYPE html>
 <html lang="de" class="no-js">
@@ -41,7 +47,11 @@ const {
   <meta property="og:title" content={ogTitle}>
   <meta property="og:description" content={ogDescription}>
   <meta property="og:url" content={canonical}>
-  <meta property="og:image" content="https://www.domiart-moresa.de/assets/img/og-image.jpg">
+  <meta property="og:image" content={ogImageUrl}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content={ogImageUrl}>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
