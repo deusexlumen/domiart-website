@@ -982,6 +982,24 @@ body.nav-open .nav-toggle span::after {
   gap: 14px;
 }
 
+/* Zwei-Bild-Variante auf den Leistungsseiten: das 4er-Raster wuerde die  */
+/* Kacheln dort flach und verloren aussehen lassen.                       */
+.gallery-grid--duo {
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.gallery-grid--duo .gallery-item {
+  aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 700px) {
+  .gallery-grid--duo {
+    grid-template-columns: 1fr;
+  }
+}
+
 .gallery-item {
   position: relative;
   display: block;

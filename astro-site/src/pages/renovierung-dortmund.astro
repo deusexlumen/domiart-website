@@ -143,6 +143,27 @@ import Base from '../layouts/Base.astro';
 
     <div class="fugen-strip" aria-hidden="true"></div>
 
+    <!-- ================= Einblicke ================= -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow eyebrow--light">Einblicke</p>
+          <h2 class="display-lg">Aus der Baustelle<br>wird ein Zuhause.</h2>
+        </div>
+
+        <div class="gallery-grid gallery-grid--duo">
+          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Wohnraum zu Beginn der Renovierung">
+            <img src="/assets/img/leistungen/renovierung-vorher.webp" alt="Wohnraum in Dortmund zu Beginn der Renovierung — alter Bodenbelag entfernt, Wände vorbereitet" loading="lazy">
+            <span class="gallery-item__cat">Vorher</span>
+          </button>
+          <button type="button" class="gallery-item" data-reveal data-reveal-delay="0.08" aria-label="Bild vergrößern: Fertig renovierter Wohnraum">
+            <img src="/assets/img/leistungen/renovierung-nachher.webp" alt="Fertig renovierter Wohnraum — frisch gestrichene Wände und saubere Anschlüsse" loading="lazy">
+            <span class="gallery-item__cat">Nachher</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= Ablauf ================= -->
     <section class="section section--dark">
       <div class="container">
