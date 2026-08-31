@@ -114,10 +114,6 @@ h4 {
   font-size: clamp(2.2rem, 5vw, 4rem);
 }
 
-.display-md {
-  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
-}
-
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -635,7 +631,7 @@ body.nav-open .nav-toggle span::after {
   color: var(--white);
   overflow: hidden;
   padding-block: 18px;
-  transform: rotate(-1.2deg) scale(1.02);
+  transform: rotate(-1.2deg) scale(1.02) skewX(var(--ticker-skew, 0deg));
   margin-block: -18px;
   position: relative;
   z-index: 5;
@@ -691,6 +687,7 @@ body.nav-open .nav-toggle span::after {
   border-radius: var(--radius);
   padding: 34px 30px 30px;
   overflow: hidden;
+  will-change: transform;
   transition: transform 0.45s var(--ease-out), box-shadow 0.45s, border-color 0.45s;
 }
 
@@ -713,15 +710,6 @@ body.nav-open .nav-toggle span::after {
 
 .service-card:hover::before {
   transform: scaleX(1);
-}
-
-.service-card__num {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  color: var(--azure);
-  margin-bottom: 22px;
 }
 
 .service-card h3 {
@@ -825,6 +813,15 @@ body.nav-open .nav-toggle span::after {
   background-repeat: no-repeat;
 }
 
+.ba-slider__handle:focus-visible {
+  outline: none;
+}
+
+.ba-slider__handle:focus-visible::after {
+  outline: 3px solid var(--azure);
+  outline-offset: 3px;
+}
+
 .ba-slider__label {
   position: absolute;
   top: 18px;
@@ -895,20 +892,37 @@ body.nav-open .nav-toggle span::after {
 
 .gallery-item {
   position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
   border-radius: var(--radius);
   overflow: hidden;
   cursor: zoom-in;
+}
+
+.gallery-item:focus-visible {
+  outline: 3px solid var(--azure);
+  outline-offset: 3px;
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s var(--ease-out);
+  /* Crop-Puffer für den Parallax (GSAP animiert translate auf transform,
+     die Skalierung liegt als eigene CSS-Eigenschaft daneben) */
+  scale: 1.12;
+  will-change: transform;
+  transition: scale 0.7s var(--ease-out);
 }
 
 .gallery-item:hover img {
-  transform: scale(1.06);
+  scale: 1.19;
 }
 
 .gallery-item::after {
@@ -1049,11 +1063,16 @@ body.nav-open .nav-toggle span::after {
 
 .about__media {
   position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
 }
 
 .about__media img {
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
+  /* Crop-Puffer für den dezenten Parallax (±4%) */
+  scale: 1.06;
+  will-change: transform;
 }
 
 .about__quote {
@@ -2179,6 +2198,90 @@ body.nav-open .nav-toggle span::after {
 .service-card__link:hover {
   color: var(--azure);
   transform: translateX(3px);
+}
+
+/* ==========================================================================
+   Bleeding Edge: Scroll-Progress-Bar + Cross-Document View Transitions
+   ========================================================================== */
+
+/* ---------- SplitText: Wörter bleiben ungeteilt ---------- */
+/* Ohne nowrap ist das min-content der h1 nur noch EIN Zeichen breit —  */
+/* die Hero-Grid-Spalte würde schrumpfen und das Wort mitten drin       */
+/* umbrechen ("Modernisieru|ng"). nowrap haelt das Wort als Einheit.    */
+
+.split-word {
+  white-space: nowrap;
+}
+
+/* ---------- Scroll-Progress-Bar (3px, oberer Viewport-Rand) ---------- */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 150; /* ueber Header (100), unter Lightbox (200) */
+  background: linear-gradient(90deg, var(--blue), var(--azure));
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+@keyframes scroll-progress-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Nativ per Scroll-Driven Animation; sonst uebernimmt der JS-Fallback (Lenis) */
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: scroll-progress-grow linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+/* ---------- Cross-Document View Transitions ---------- */
+
+@view-transition {
+  navigation: auto;
+}
+
+@keyframes vt-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+::view-transition-old(root) {
+  animation: vt-out 0.26s ease both;
+}
+
+::view-transition-new(root) {
+  animation: vt-in 0.32s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    animation: none;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
 }
 
 /* hidden-Attribut muss display-Regeln schlagen (z.B. .btn) */

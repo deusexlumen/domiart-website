@@ -1,6 +1,7 @@
 /* ==========================================================================
    DOMIART — Interaktionen
-   Lenis Smooth Scroll + GSAP Reveals + Vorher/Nachher + Lightbox + Video
+   Lenis Smooth Scroll + GSAP 3.13 (Reveals, SplitText, Parallax, Magnetik)
+   Vorher/Nachher + Lightbox + Video + Konfigurator + Signature-Sequenz
    ========================================================================== */
 
 (function () {
@@ -8,19 +9,30 @@
 
   document.documentElement.classList.remove("no-js");
 
-  var prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var prefersReducedMotion = motionQuery.matches;
+  var finePointerQuery = window.matchMedia("(pointer: fine)");
+  var hasGsap = typeof gsap !== "undefined";
 
   /* ---------- Lenis Smooth Scroll ---------- */
   var lenis = null;
   if (!prefersReducedMotion && typeof Lenis !== "undefined") {
     lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+  }
+
+  /* GSAP-Setup: Plugins + offizielles Lenis-Sync-Pattern */
+  if (hasGsap) {
+    gsap.registerPlugin(ScrollTrigger);
+    if (typeof SplitText !== "undefined") {
+      gsap.registerPlugin(SplitText);
     }
-    requestAnimationFrame(raf);
+    if (lenis) {
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(function (time) {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    }
   }
 
   /* ---------- Header: Scrolled-State ---------- */
@@ -35,6 +47,30 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
   onScroll();
+
+  /* ---------- Scroll-Progress-Bar (JS-Fallback) ---------- */
+  /* Primär läuft die Bar nativ per CSS animation-timeline: scroll().     */
+  var progressBar = document.querySelector(".scroll-progress");
+  var nativeProgress =
+    typeof CSS !== "undefined" &&
+    CSS.supports &&
+    CSS.supports("animation-timeline", "scroll()");
+  if (progressBar && !nativeProgress && !prefersReducedMotion) {
+    var updateProgress = function () {
+      var y = lenis ? lenis.scroll : window.scrollY;
+      var max =
+        document.documentElement.scrollHeight - window.innerHeight;
+      var p = max > 0 ? y / max : 1;
+      progressBar.style.transform = "scaleX(" + Math.min(1, Math.max(0, p)) + ")";
+    };
+    if (lenis) {
+      lenis.on("scroll", updateProgress);
+    } else {
+      window.addEventListener("scroll", updateProgress, { passive: true });
+    }
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
+  }
 
   /* ---------- Mobile Navigation ---------- */
   var navToggle = document.querySelector(".nav-toggle");
@@ -71,14 +107,13 @@
   });
 
   /* ---------- GSAP Reveal-Animationen ---------- */
-  if (!prefersReducedMotion && typeof gsap !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-
-    if (lenis) {
-      lenis.on("scroll", ScrollTrigger.update);
-    }
-
+  /* Start erst nach document.fonts.ready, damit SplitText die Zeilen-  */
+  /* umbrüche mit den echten Font-Metriken berechnet.                    */
+  function initReveals() {
+  if (!prefersReducedMotion && hasGsap) {
+    /* Hero-Elemente auslassen — die Hero-Timeline animiert sie selbst */
     gsap.utils.toArray("[data-reveal]").forEach(function (el) {
+      if (el.closest(".hero")) return;
       var delay = parseFloat(el.getAttribute("data-reveal-delay") || 0);
       gsap.to(el, {
         opacity: 1,
@@ -95,49 +130,155 @@
     });
 
     /* Hero-Intro (nur auf der Startseite vorhanden) */
-    if (document.querySelector(".hero h1")) {
+    var heroH1 = document.querySelector(".hero h1");
+    if (heroH1) {
       var heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      heroTl.to(".hero .eyebrow", { opacity: 1, y: 0, duration: 0.8 }, 0.15);
+
+      /* Kinetic Typography: Chars-Reveal per SplitText */
+      if (typeof SplitText !== "undefined") {
+        var heroSplit = new SplitText(heroH1, {
+          type: "words,chars",
+          mask: "words",
+          wordsClass: "split-word",
+          charsClass: "split-char",
+        });
+        /* h1 selbst sofort sichtbar, nur die Chars fliegen rein */
+        gsap.set(heroH1, { opacity: 1, y: 0 });
+        gsap.set(heroSplit.chars, { yPercent: 112 });
+        heroTl.to(
+          heroSplit.chars,
+          {
+            yPercent: 0,
+            duration: 1.05,
+            ease: "power4.out",
+            stagger: 0.022,
+          },
+          0.3
+        );
+      } else {
+        heroTl.to(heroH1, { opacity: 1, y: 0, duration: 1 }, 0.3);
+      }
+
       heroTl
-      .to(".hero .eyebrow", { opacity: 1, y: 0, duration: 0.8 }, 0.15)
-      .to(".hero h1", { opacity: 1, y: 0, duration: 1 }, 0.3)
-      .to(".hero__sub", { opacity: 1, y: 0, duration: 0.9 }, 0.5)
-      .to(".hero__actions", { opacity: 1, y: 0, duration: 0.9 }, 0.65)
-      .to(".hero__meta", { opacity: 1, y: 0, duration: 0.9 }, 0.8)
-      .to(
-        ".hero__card--main",
-        { opacity: 1, y: 0, scale: 1, duration: 1.2 },
-        0.4
-      )
-      .to(
-        ".hero__card--float",
-        { opacity: 1, y: 0, scale: 1, duration: 1.1 },
-        0.7
-      )
-      .to(".hero__badge", { opacity: 1, y: 0, duration: 0.8 }, 0.95);
+        .to(".hero__sub", { opacity: 1, y: 0, duration: 0.9 }, 0.55)
+        .to(".hero__actions", { opacity: 1, y: 0, duration: 0.9 }, 0.7)
+        .to(".hero__meta", { opacity: 1, y: 0, duration: 0.9 }, 0.85)
+        .to(
+          ".hero__card--main",
+          { opacity: 1, y: 0, scale: 1, duration: 1.2 },
+          0.4
+        )
+        .to(
+          ".hero__card--float",
+          { opacity: 1, y: 0, scale: 1, duration: 1.1 },
+          0.7
+        )
+        .to(".hero__badge", { opacity: 1, y: 0, duration: 0.8 }, 0.95);
+    }
+
+    /* Section-Heads: Word-Stagger-Reveal */
+    if (typeof SplitText !== "undefined") {
+      gsap.utils.toArray(".display-lg").forEach(function (el) {
+        var split = new SplitText(el, {
+          type: "words",
+          mask: "words",
+          wordsClass: "split-word",
+        });
+        gsap.set(split.words, { yPercent: 110 });
+        gsap.to(split.words, {
+          yPercent: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 86%",
+            once: true,
+          },
+        });
+      });
     }
   } else {
     document.documentElement.classList.add("no-anim");
   }
+  }
+
+  /* Warten, bis die tatsächlich verwendeten Font-Faces geladen sind.   */
+  /* fonts.ready allein reicht nicht: Status ist "loaded", solange noch */
+  /* kein Font angefordert wurde — load() forciert die kritischen.      */
+  function whenFontsReady(cb) {
+    if (typeof document.fonts === "undefined" || !document.fonts.load) {
+      cb();
+      return;
+    }
+    var done = false;
+    var finish = function () {
+      if (!done) {
+        done = true;
+        cb();
+      }
+    };
+    var faces = [
+      '700 1em "Bricolage Grotesque"',
+      '800 1em "Bricolage Grotesque"',
+      "400 1em Inter",
+      "600 1em Inter",
+    ];
+    Promise.all(
+      faces.map(function (f) {
+        return document.fonts.load(f).catch(function () {
+          return [];
+        });
+      })
+    )
+      .then(function () {
+        /* Status erst wieder "loaded", wenn ALLE ausstehenden Loads fertig sind */
+        return document.fonts.ready;
+      })
+      .then(finish);
+    setTimeout(finish, 2500); // Fallback, falls ein Font haengt
+  }
+
+  whenFontsReady(function () {
+    initReveals();
+    if (hasGsap) ScrollTrigger.refresh();
+  });
 
   /* ---------- Vorher/Nachher-Slider ---------- */
   document.querySelectorAll(".ba-slider").forEach(function (slider) {
     var dragging = false;
+    var rect = null;
+    var pos = 50;
+    var handle = slider.querySelector(".ba-slider__handle");
 
-    function setPos(clientX) {
-      var rect = slider.getBoundingClientRect();
-      var pos = ((clientX - rect.left) / rect.width) * 100;
-      pos = Math.max(2, Math.min(98, pos));
+    function cacheRect() {
+      rect = slider.getBoundingClientRect();
+    }
+
+    function applyPos(p, clamp) {
+      pos = clamp ? Math.max(2, Math.min(98, p)) : Math.max(0, Math.min(100, p));
       slider.style.setProperty("--ba-pos", pos + "%");
+      if (handle) {
+        handle.setAttribute("aria-valuenow", String(Math.round(pos)));
+      }
+    }
+
+    function setPosFromX(clientX) {
+      if (!rect) cacheRect();
+      if (!rect.width) return;
+      applyPos(((clientX - rect.left) / rect.width) * 100, true);
     }
 
     slider.addEventListener("pointerdown", function (e) {
       dragging = true;
       slider.setPointerCapture(e.pointerId);
-      setPos(e.clientX);
+      cacheRect();
+      setPosFromX(e.clientX);
     });
 
     slider.addEventListener("pointermove", function (e) {
-      if (dragging) setPos(e.clientX);
+      if (dragging) setPosFromX(e.clientX);
     });
 
     ["pointerup", "pointercancel"].forEach(function (evt) {
@@ -145,28 +286,70 @@
         dragging = false;
       });
     });
+
+    /* Layout-Cache bei Resize invalidieren */
+    window.addEventListener(
+      "resize",
+      function () {
+        rect = null;
+      },
+      { passive: true }
+    );
+
+    /* Tastatur-Bedienung (role="slider" liegt im Markup auf dem Handle) */
+    if (handle) {
+      handle.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+          e.preventDefault();
+          applyPos(pos - 5, true);
+        } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+          e.preventDefault();
+          applyPos(pos + 5, true);
+        } else if (e.key === "Home") {
+          e.preventDefault();
+          applyPos(0, false);
+        } else if (e.key === "End") {
+          e.preventDefault();
+          applyPos(100, false);
+        }
+      });
+    }
   });
 
   /* ---------- Galerie-Lightbox ---------- */
   var lightbox = document.querySelector(".lightbox");
   if (lightbox) {
     var lbImg = lightbox.querySelector("img");
+    var lbClose = lightbox.querySelector(".lightbox__close");
+    var lbPrev = lightbox.querySelector(".lightbox__nav--prev");
+    var lbNext = lightbox.querySelector(".lightbox__nav--next");
     var galleryItems = Array.prototype.slice.call(
       document.querySelectorAll(".gallery-item img")
     );
     var currentIndex = 0;
+    var lastTrigger = null;
 
-    function openLightbox(index) {
+    lightbox.setAttribute("aria-hidden", "true");
+
+    function openLightbox(index, trigger) {
       currentIndex = index;
+      lastTrigger = trigger || null;
       lbImg.src = galleryItems[currentIndex].src;
       lbImg.alt = galleryItems[currentIndex].alt;
       lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
       if (lenis) lenis.stop();
+      lbClose.focus();
     }
 
     function closeLightbox() {
       lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
       if (lenis) lenis.start();
+      if (lastTrigger && document.contains(lastTrigger)) {
+        lastTrigger.focus();
+      }
+      lastTrigger = null;
     }
 
     function step(dir) {
@@ -177,24 +360,18 @@
     }
 
     galleryItems.forEach(function (img, i) {
-      img.closest(".gallery-item").addEventListener("click", function () {
-        openLightbox(i);
+      img.closest(".gallery-item").addEventListener("click", function (e) {
+        openLightbox(i, e.currentTarget);
       });
     });
 
-    lightbox
-      .querySelector(".lightbox__close")
-      .addEventListener("click", closeLightbox);
-    lightbox
-      .querySelector(".lightbox__nav--prev")
-      .addEventListener("click", function () {
-        step(-1);
-      });
-    lightbox
-      .querySelector(".lightbox__nav--next")
-      .addEventListener("click", function () {
-        step(1);
-      });
+    lbClose.addEventListener("click", closeLightbox);
+    lbPrev.addEventListener("click", function () {
+      step(-1);
+    });
+    lbNext.addEventListener("click", function () {
+      step(1);
+    });
 
     lightbox.addEventListener("click", function (e) {
       if (e.target === lightbox) closeLightbox();
@@ -202,9 +379,25 @@
 
     document.addEventListener("keydown", function (e) {
       if (!lightbox.classList.contains("is-open")) return;
-      if (e.key === "Escape") closeLightbox();
+      if (e.key === "Escape") {
+        closeLightbox();
+        return;
+      }
       if (e.key === "ArrowLeft") step(-1);
       if (e.key === "ArrowRight") step(1);
+
+      /* Einfacher Focus-Trap: Tab zyklisch zwischen den drei Buttons */
+      if (e.key === "Tab") {
+        var focusables = [lbClose, lbPrev, lbNext];
+        var idx = focusables.indexOf(document.activeElement);
+        e.preventDefault();
+        if (e.shiftKey) {
+          idx = idx <= 0 ? focusables.length - 1 : idx - 1;
+        } else {
+          idx = idx === focusables.length - 1 ? 0 : idx + 1;
+        }
+        focusables[idx].focus();
+      }
     });
   }
 
@@ -242,134 +435,359 @@
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  /* ======================================================================
+     Scroll-Effekte (Parallax, Magnetik, Ticker-Skew)
+     Alle nur bei voller Motion + GSAP. Registrieren sich für den
+     Live-Reduced-Motion-Listener unten.
+     ====================================================================== */
+  var fxKillers = [];
+
+  function initScrollFx() {
+    if (prefersReducedMotion || !hasGsap) return;
+
+    /* ---------- Parallax: Hero-Karten + Glow ---------- */
+    if (document.querySelector(".hero__card--float")) {
+      fxKillers.push(
+        gsap.to(".hero__card--main", {
+          yPercent: -10,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        })
+      );
+      fxKillers.push(
+        gsap.to(".hero__card--float", {
+          yPercent: 14,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        })
+      );
+      fxKillers.push(
+        gsap.to(".hero__glow", {
+          yPercent: 22,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        })
+      );
+    }
+
+    /* ---------- Parallax: Galerie-Bilder ---------- */
+    /* Crop-Puffer (scale) liegt als eigene CSS-Eigenschaft auf dem img */
+    /* (no-JS/reduced-motion-Fallback inkl. Hover-Zoom). Sobald GSAP    */
+    /* animiert, neutralisiert es die CSS-Eigenschaft inline — der      */
+    /* Hover-Zoom laeuft dann ueber eigene GSAP-Tweens.                 */
+    gsap.utils.toArray(".gallery-item img").forEach(function (img) {
+      gsap.set(img, { scale: 1.12 });
+      fxKillers.push(
+        gsap.fromTo(
+          img,
+          { yPercent: -8 },
+          {
+            yPercent: 8,
+            ease: "none",
+            scrollTrigger: {
+              trigger: img.closest(".gallery-item"),
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        )
+      );
+
+      /* Hover-Zoom (ersetzt die CSS-Variante, solange GSAP aktiv ist) */
+      if (finePointerQuery.matches) {
+        var item = img.closest(".gallery-item");
+        var onEnter = function () {
+          gsap.to(img, {
+            scale: 1.19,
+            duration: 0.7,
+            ease: "power3.out",
+            overwrite: "auto",
+          });
+        };
+        var onLeaveImg = function () {
+          gsap.to(img, {
+            scale: 1.12,
+            duration: 0.7,
+            ease: "power3.out",
+            overwrite: "auto",
+          });
+        };
+        item.addEventListener("pointerenter", onEnter);
+        item.addEventListener("pointerleave", onLeaveImg);
+        fxKillers.push({
+          kill: function () {
+            item.removeEventListener("pointerenter", onEnter);
+            item.removeEventListener("pointerleave", onLeaveImg);
+          },
+        });
+      }
+    });
+
+    /* ---------- Parallax: Über-uns-Bild ---------- */
+    var aboutImg = document.querySelector(".about__media img");
+    if (aboutImg) {
+      fxKillers.push(
+        gsap.fromTo(
+          aboutImg,
+          { yPercent: -4 },
+          {
+            yPercent: 4,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".about__media",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        )
+      );
+    }
+
+    /* ---------- Magnetische Buttons ---------- */
+    if (finePointerQuery.matches) {
+      document
+        .querySelectorAll(".btn--primary, .nav-cta")
+        .forEach(function (el) {
+          if (el.closest(".sticky-cta")) return; // Touch-CTA ausnehmen
+          el.classList.add("is-magnetic");
+
+          var xTo = gsap.quickTo(el, "x", { duration: 0.4, ease: "power3" });
+          var yTo = gsap.quickTo(el, "y", { duration: 0.4, ease: "power3" });
+
+          function onMove(e) {
+            var r = el.getBoundingClientRect();
+            xTo((e.clientX - (r.left + r.width / 2)) * 0.3);
+            yTo((e.clientY - (r.top + r.height / 2)) * 0.3);
+          }
+          function onLeave() {
+            gsap.to(el, {
+              x: 0,
+              y: 0,
+              duration: 0.7,
+              ease: "elastic.out(1, 0.4)",
+              overwrite: "auto",
+            });
+          }
+
+          el.addEventListener("pointermove", onMove);
+          el.addEventListener("pointerleave", onLeave);
+
+          fxKillers.push({
+            kill: function () {
+              el.removeEventListener("pointermove", onMove);
+              el.removeEventListener("pointerleave", onLeave);
+              el.classList.remove("is-magnetic");
+              gsap.set(el, { x: 0, y: 0 });
+            },
+          });
+        });
+    }
+
+    /* ---------- Ticker: Velocity-Skew ---------- */
+    var ticker = document.querySelector(".ticker");
+    if (ticker && lenis) {
+      var skewProxy = { skew: 0 };
+      var skewTween = null;
+      var onLenisScroll = function (e) {
+        var s = gsap.utils.clamp(-8, 8, (e.velocity || 0) * 0.4);
+        if (Math.abs(s) > Math.abs(skewProxy.skew)) {
+          skewProxy.skew = s;
+          if (skewTween) skewTween.kill();
+          skewTween = gsap.to(skewProxy, {
+            skew: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            overwrite: true,
+            onUpdate: function () {
+              ticker.style.setProperty(
+                "--ticker-skew",
+                skewProxy.skew.toFixed(2) + "deg"
+              );
+            },
+          });
+        }
+      };
+      lenis.on("scroll", onLenisScroll);
+      fxKillers.push({
+        kill: function () {
+          lenis.off("scroll", onLenisScroll);
+          if (skewTween) skewTween.kill();
+          ticker.style.setProperty("--ticker-skew", "0deg");
+        },
+      });
+    }
+  }
+
+  initScrollFx();
+
+  /* Live-Reaktion: Nutzer aktiviert reduced-motion während der Session */
+  motionQuery.addEventListener("change", function (e) {
+    prefersReducedMotion = e.matches;
+    if (e.matches) {
+      fxKillers.forEach(function (fx) {
+        if (fx && typeof fx.kill === "function") fx.kill();
+      });
+      fxKillers = [];
+      /* Parallax-Restwerte zurücksetzen (inkl. GSAPs Neutralisierung   */
+      /* der individuellen Transform-Eigenschaften)                     */
+      if (hasGsap) {
+        gsap.set(
+          ".gallery-item img, .about__media img, .hero__card--main, .hero__card--float, .hero__glow",
+          { clearProps: "transform,translate,rotate,scale" }
+        );
+      }
+    }
+  });
 })();
 
-  /* ---------- Projekt-Konfigurator → WhatsApp ---------- */
+/* ---------- Projekt-Konfigurator → WhatsApp ---------- */
+(function () {
+  "use strict";
+
   var config = document.querySelector(".config");
-  if (config) {
-    var state = {
-      bereich: null,
-      groesse: null,
-      zustand: null,
-      zeitpunkt: null,
-      name: "",
-    };
-    var step = 1;
-    var maxStep = 3;
+  if (!config) return;
 
-    var panels = config.querySelectorAll(".config__panel");
-    var dots = config.querySelectorAll(".config__dots span");
-    var stepLabel = config.querySelector("[data-step-current]");
-    var backBtn = config.querySelector("[data-back]");
-    var nextBtn = config.querySelector("[data-next]");
-    var sendBtn = config.querySelector("[data-send]");
-    var summaryEl = config.querySelector("[data-summary]");
-    var nameInput = config.querySelector('[data-field="name"]');
+  var state = {
+    bereich: null,
+    groesse: null,
+    zustand: null,
+    zeitpunkt: null,
+    name: "",
+  };
+  var step = 1;
+  var maxStep = 3;
 
-    function stepValid(n) {
-      if (n === 1) return !!state.bereich;
-      if (n === 2) return !!(state.groesse && state.zustand);
-      if (n === 3) return !!state.zeitpunkt;
-      return false;
-    }
+  var panels = config.querySelectorAll(".config__panel");
+  var dots = config.querySelectorAll(".config__dots span");
+  var stepLabel = config.querySelector("[data-step-current]");
+  var backBtn = config.querySelector("[data-back]");
+  var nextBtn = config.querySelector("[data-next]");
+  var sendBtn = config.querySelector("[data-send]");
+  var summaryEl = config.querySelector("[data-summary]");
+  var nameInput = config.querySelector('[data-field="name"]');
 
-    function buildMessage() {
-      var msg =
-        "Hallo DOMIART, ich plane ein Projekt: " +
-        state.bereich +
-        ". Umfang: " +
-        state.groesse +
-        ", Zustand: " +
-        state.zustand +
-        ". Zeitrahmen: " +
-        state.zeitpunkt +
-        ".";
-      if (state.name.trim()) {
-        msg += " Mein Name ist " + state.name.trim() + ".";
-      }
-      msg += " Bitte melden Sie sich bei mir zur kostenlosen Beratung.";
-      return msg;
-    }
-
-    function updateSummary() {
-      if (step !== 3) return;
-      if (stepValid(3)) {
-        summaryEl.textContent = buildMessage();
-        sendBtn.href =
-          "https://wa.me/4915568820575?text=" +
-          encodeURIComponent(buildMessage());
-        sendBtn.hidden = false;
-      } else {
-        summaryEl.textContent =
-          "Wählen Sie oben einen Zeitpunkt — Ihre Nachricht entsteht hier.";
-        sendBtn.hidden = true;
-      }
-    }
-
-    function render() {
-      panels.forEach(function (p) {
-        p.classList.toggle(
-          "is-active",
-          parseInt(p.getAttribute("data-step"), 10) === step
-        );
-      });
-      dots.forEach(function (d, i) {
-        d.classList.toggle("is-active", i < step);
-      });
-      stepLabel.textContent = step;
-      backBtn.disabled = step === 1;
-      nextBtn.hidden = step === maxStep;
-      nextBtn.disabled = !stepValid(step);
-      if (step !== maxStep) sendBtn.hidden = true;
-      updateSummary();
-    }
-
-    config.querySelectorAll(".config__option").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var field = btn.getAttribute("data-field");
-        var value = btn.getAttribute("data-value");
-        state[field] = value;
-
-        config
-          .querySelectorAll('.config__option[data-field="' + field + '"]')
-          .forEach(function (b) {
-            b.classList.toggle("is-selected", b === btn);
-          });
-
-        // Auf Schritt 1 und 2 nach Auswahl automatisch weiter,
-        // sobald der Schritt vollständig ist
-        if (step < maxStep && stepValid(step)) {
-          setTimeout(function () {
-            step++;
-            render();
-          }, 350);
-        } else {
-          render();
-        }
-      });
-    });
-
-    nameInput.addEventListener("input", function () {
-      state.name = nameInput.value;
-      updateSummary();
-    });
-
-    backBtn.addEventListener("click", function () {
-      if (step > 1) {
-        step--;
-        render();
-      }
-    });
-
-    nextBtn.addEventListener("click", function () {
-      if (step < maxStep && stepValid(step)) {
-        step++;
-        render();
-      }
-    });
-
-    render();
+  function stepValid(n) {
+    if (n === 1) return !!state.bereich;
+    if (n === 2) return !!(state.groesse && state.zustand);
+    if (n === 3) return !!state.zeitpunkt;
+    return false;
   }
+
+  function buildMessage() {
+    var msg =
+      "Hallo DOMIART, ich plane ein Projekt: " +
+      state.bereich +
+      ". Umfang: " +
+      state.groesse +
+      ", Zustand: " +
+      state.zustand +
+      ". Zeitrahmen: " +
+      state.zeitpunkt +
+      ".";
+    if (state.name.trim()) {
+      msg += " Mein Name ist " + state.name.trim() + ".";
+    }
+    msg += " Bitte melden Sie sich bei mir zur kostenlosen Beratung.";
+    return msg;
+  }
+
+  function updateSummary() {
+    if (step !== 3) return;
+    if (stepValid(3)) {
+      summaryEl.textContent = buildMessage();
+      sendBtn.href =
+        "https://wa.me/4915568820575?text=" +
+        encodeURIComponent(buildMessage());
+      sendBtn.hidden = false;
+    } else {
+      summaryEl.textContent =
+        "Wählen Sie oben einen Zeitpunkt — Ihre Nachricht entsteht hier.";
+      sendBtn.hidden = true;
+    }
+  }
+
+  function render() {
+    panels.forEach(function (p) {
+      p.classList.toggle(
+        "is-active",
+        parseInt(p.getAttribute("data-step"), 10) === step
+      );
+    });
+    dots.forEach(function (d, i) {
+      d.classList.toggle("is-active", i < step);
+    });
+    stepLabel.textContent = step;
+    backBtn.disabled = step === 1;
+    nextBtn.hidden = step === maxStep;
+    nextBtn.disabled = !stepValid(step);
+    if (step !== maxStep) sendBtn.hidden = true;
+    updateSummary();
+  }
+
+  config.querySelectorAll(".config__option").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var field = btn.getAttribute("data-field");
+      var value = btn.getAttribute("data-value");
+      state[field] = value;
+
+      config
+        .querySelectorAll('.config__option[data-field="' + field + '"]')
+        .forEach(function (b) {
+          b.classList.toggle("is-selected", b === btn);
+        });
+
+      // Auf Schritt 1 und 2 nach Auswahl automatisch weiter,
+      // sobald der Schritt vollständig ist
+      if (step < maxStep && stepValid(step)) {
+        setTimeout(function () {
+          step++;
+          render();
+        }, 350);
+      } else {
+        render();
+      }
+    });
+  });
+
+  nameInput.addEventListener("input", function () {
+    state.name = nameInput.value;
+    updateSummary();
+  });
+
+  backBtn.addEventListener("click", function () {
+    if (step > 1) {
+      step--;
+      render();
+    }
+  });
+
+  nextBtn.addEventListener("click", function () {
+    if (step < maxStep && stepValid(step)) {
+      step++;
+      render();
+    }
+  });
+
+  render();
+})();
 
 /* ---------- Signature: Vom Plan zum Raum (gepinnte Scroll-Sequenz) ---------- */
 (function () {
@@ -413,10 +831,13 @@
     scrollTrigger: {
       trigger: sig,
       start: "top top",
-      end: "+=2600",
+      end: function () {
+        return "+=" + window.innerHeight * 3;
+      },
       scrub: 1,
       pin: true,
       anticipatePin: 1,
+      invalidateOnRefresh: true,
     },
   });
 

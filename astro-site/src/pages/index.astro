@@ -321,7 +321,7 @@ import Base from '../layouts/Base.astro';
             <img class="ba-slider__after" src="/assets/img/nachher.jpg" alt="Badezimmer nach der Sanierung — modern gefliest" loading="lazy">
             <span class="ba-slider__label ba-slider__label--before">Vorher</span>
             <span class="ba-slider__label ba-slider__label--after">Nachher</span>
-            <div class="ba-slider__handle" aria-hidden="true"></div>
+            <div class="ba-slider__handle" role="slider" tabindex="0" aria-label="Vorher-Nachher-Regler" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
           </div>
 
           <div class="ba-copy" data-reveal>
@@ -533,34 +533,34 @@ import Base from '../layouts/Base.astro';
         </div>
 
         <div class="gallery-grid">
-          <figure class="gallery-item gallery-item--wide" data-reveal>
+          <button type="button" class="gallery-item gallery-item--wide" data-reveal aria-label="Bild vergrößern: Helles saniertes Badezimmer mit Fenster">
             <img src="/assets/img/projekte/projekt-1.jpg" alt="Helles saniertes Badezimmer mit Fenster" loading="lazy">
-            <figcaption class="gallery-item__cat">Badsanierung</figcaption>
-          </figure>
-          <figure class="gallery-item gallery-item--tall" data-reveal>
+            <span class="gallery-item__cat">Badsanierung</span>
+          </button>
+          <button type="button" class="gallery-item gallery-item--tall" data-reveal aria-label="Bild vergrößern: Sanierte Altbau-Diele mit Doppeltür">
             <img src="/assets/img/projekte/projekt-2.jpg" alt="Sanierte Altbau-Diele mit Doppeltür" loading="lazy">
-            <figcaption class="gallery-item__cat">Innenausbau</figcaption>
-          </figure>
-          <figure class="gallery-item" data-reveal>
+            <span class="gallery-item__cat">Innenausbau</span>
+          </button>
+          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Modernes grau gefliestes Badezimmer">
             <img src="/assets/img/projekte/projekt-3.jpg" alt="Modernes grau gefliestes Badezimmer" loading="lazy">
-            <figcaption class="gallery-item__cat">Badsanierung</figcaption>
-          </figure>
-          <figure class="gallery-item" data-reveal>
+            <span class="gallery-item__cat">Badsanierung</span>
+          </button>
+          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Gäste-WC mit grauen Großformat-Fliesen">
             <img src="/assets/img/projekte/projekt-4.jpg" alt="Gäste-WC mit grauen Großformat-Fliesen" loading="lazy">
-            <figcaption class="gallery-item__cat">Fliesenarbeit</figcaption>
-          </figure>
-          <figure class="gallery-item gallery-item--tall" data-reveal>
+            <span class="gallery-item__cat">Fliesenarbeit</span>
+          </button>
+          <button type="button" class="gallery-item gallery-item--tall" data-reveal aria-label="Bild vergrößern: Flur mit neu verlegtem Vinyl-Designboden">
             <img src="/assets/img/projekte/projekt-5.jpg" alt="Flur mit neu verlegtem Vinyl-Designboden" loading="lazy">
-            <figcaption class="gallery-item__cat">Bodenbeläge</figcaption>
-          </figure>
-          <figure class="gallery-item" data-reveal>
+            <span class="gallery-item__cat">Bodenbeläge</span>
+          </button>
+          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Saniertes Bad mit WC und verkleideter Wanne">
             <img src="/assets/img/projekte/projekt-6.jpg" alt="Saniertes Bad mit WC und verkleideter Wanne" loading="lazy">
-            <figcaption class="gallery-item__cat">Sanierung</figcaption>
-          </figure>
-          <figure class="gallery-item gallery-item--wide" data-reveal>
+            <span class="gallery-item__cat">Sanierung</span>
+          </button>
+          <button type="button" class="gallery-item gallery-item--wide" data-reveal aria-label="Bild vergrößern: Moderner WPC-Sichtschutzzaun in Grau mit Anthrazit-Pfosten">
             <img src="/assets/img/projekte/projekt-7.jpg" alt="Moderner WPC-Sichtschutzzaun in Grau mit Anthrazit-Pfosten" loading="lazy">
-            <figcaption class="gallery-item__cat">Außenanlage</figcaption>
-          </figure>
+            <span class="gallery-item__cat">Außenanlage</span>
+          </button>
         </div>
       </div>
     </section>
