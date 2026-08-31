@@ -78,9 +78,10 @@
 
   if (navToggle) {
     navToggle.addEventListener("click", function () {
-      document.body.classList.toggle("nav-open");
+      var isOpen = document.body.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
       if (lenis) {
-        if (document.body.classList.contains("nav-open")) lenis.stop();
+        if (isOpen) lenis.stop();
         else lenis.start();
       }
     });
@@ -89,6 +90,7 @@
   navLinks.forEach(function (link) {
     link.addEventListener("click", function (e) {
       document.body.classList.remove("nav-open");
+      if (navToggle) navToggle.setAttribute("aria-expanded", "false");
       if (lenis) lenis.start();
 
       var href = link.getAttribute("href");
@@ -417,7 +419,6 @@
 
     btn.addEventListener("click", function () {
       if (video.paused || video.ended) {
-        video.muted = false;
         video.play();
       } else {
         video.pause();
