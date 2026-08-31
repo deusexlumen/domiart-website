@@ -429,6 +429,30 @@
     video.addEventListener("pause", syncIcons);
     video.addEventListener("ended", syncIcons);
     syncIcons();
+
+    /* Vorher/Nachher-Umschalter: tauscht Quelle + Poster, startet direkt */
+    var switchOpts = videoFrame.querySelectorAll(".video-switch__opt");
+    Array.prototype.forEach.call(switchOpts, function (opt) {
+      opt.addEventListener("click", function () {
+        if (opt.classList.contains("is-active")) return;
+
+        Array.prototype.forEach.call(switchOpts, function (other) {
+          var active = other === opt;
+          other.classList.toggle("is-active", active);
+          other.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+
+        video.pause();
+        video.setAttribute("poster", opt.getAttribute("data-poster"));
+        video.setAttribute("src", opt.getAttribute("data-src"));
+        video.load();
+
+        var started = video.play();
+        if (started && typeof started.catch === "function") {
+          started.catch(syncIcons);
+        }
+      });
+    });
   }
 
   /* ---------- Footer-Jahr ---------- */

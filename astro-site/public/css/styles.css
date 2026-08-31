@@ -1282,6 +1282,37 @@ body.nav-open .nav-toggle span::after {
   color: rgba(255, 255, 255, 0.85);
 }
 
+.video-switch {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.video-switch__opt {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  transition: background 0.3s, color 0.3s;
+}
+
+.video-switch__opt:hover {
+  color: var(--white);
+}
+
+.video-switch__opt.is-active {
+  background: var(--white);
+  color: var(--navy);
+}
+
 @media (max-width: 900px) {
   .video-feature .container {
     grid-template-columns: 1fr;
