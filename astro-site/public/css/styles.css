@@ -254,6 +254,15 @@ h4 {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 100;
+  /* Dezenter Sockel, damit das Logo auch vor dem Scrollen ueber hellen  */
+  /* Hero-Fotos Kontrast hat. Der volle Blur-Hintergrund kommt erst      */
+  /* beim Scrollen dazu (.is-scrolled::before).                          */
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 26, 51, 0.45),
+    rgba(10, 26, 51, 0.16) 62%,
+    rgba(10, 26, 51, 0)
+  );
   transition: box-shadow 0.4s, transform 0.4s var(--ease-out);
 }
 
@@ -297,7 +306,10 @@ h4 {
   height: 46px;
   width: auto;
   flex: none;
-  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.45));
+  /* Rim-Light in Markenblau — hebt das flache Weiss vom Foto ab, ohne  */
+  /* das Logo-Konzept selbst zu veraendern.                             */
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 12px rgba(46, 155, 230, 0.38));
   transition: transform 0.5s var(--ease-out), filter 0.4s;
   animation: brand-drop 0.9s var(--ease-out) 0.1s backwards;
 }
@@ -306,9 +318,17 @@ h4 {
   height: 30px;
   width: auto;
   flex: none;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 0 10px rgba(46, 155, 230, 0.22));
   transition: filter 0.4s;
   animation: brand-fade 0.9s var(--ease-out) 0.35s backwards;
+}
+
+/* Nach dem Preloader hat das Logo seinen Auftritt schon gehabt — */
+/* Header-Einblendung wird dann nicht noch einmal abgespielt.      */
+.preloader-done .brand__emblem,
+.preloader-done .brand__wortmarke {
+  animation: none;
 }
 
 .brand:hover .brand__emblem {
@@ -318,6 +338,48 @@ h4 {
 
 .brand:hover .brand__wortmarke {
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4)) brightness(1.15);
+}
+
+/* ---------- Preloader ---------- */
+
+/* Standard unsichtbar: ohne JS (und ohne .is-preloading) nie im Weg. */
+.preloader {
+  display: none;
+}
+
+.is-preloading .preloader {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--navy);
+}
+
+.is-preloading {
+  overflow: hidden;
+}
+
+.preloader__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 0 var(--gutter);
+}
+
+.preloader__emblem {
+  height: clamp(64px, 11vw, 96px);
+  width: auto;
+  opacity: 0;
+  filter: drop-shadow(0 0 26px rgba(46, 155, 230, 0.45));
+}
+
+.preloader__wortmarke {
+  height: clamp(28px, 5vw, 42px);
+  width: auto;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
 }
 
 @keyframes brand-drop {

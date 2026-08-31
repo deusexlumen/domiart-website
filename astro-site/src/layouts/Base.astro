@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Lightbox from '../components/Lightbox.astro';
 import StickyCta from '../components/StickyCta.astro';
+import Preloader from '../components/Preloader.astro';
 
 interface Props {
   title: string;
@@ -79,8 +80,26 @@ const {
   </script>
 
   <slot name="head" />
+
+  <!-- Preloader-Entscheidung vor dem ersten Paint: nur beim ersten -->
+  <!-- Seitenaufruf pro Session und nur bei voller Motion.          -->
+  <script is:inline>
+    (function () {
+      try {
+        var seen = window.sessionStorage.getItem("domiart-preloaded");
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!seen && !reduce) {
+          document.documentElement.classList.add("is-preloading");
+        }
+      } catch (e) {
+        /* sessionStorage blockiert (Private Mode) — dann eben kein Preloader */
+      }
+    })();
+  </script>
 </head>
 <body>
+
+  <Preloader />
 
   <div class="scroll-progress" aria-hidden="true"></div>
 

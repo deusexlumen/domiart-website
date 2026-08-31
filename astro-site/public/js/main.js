@@ -35,6 +35,71 @@
     }
   }
 
+  /* ---------- Preloader: Logo-Reveal ---------- */
+  /* Laeuft nur beim ersten Aufruf pro Session (Klasse wird im Inline-   */
+  /* Skript in Base.astro gesetzt) und ist hart auf ~1,2s gedeckelt —    */
+  /* er wartet bewusst NICHT auf echte Ladefortschritte.                 */
+  var root = document.documentElement;
+
+  if (root.classList.contains("is-preloading")) {
+    var preloader = document.querySelector("[data-preloader]");
+    var preloadDone = false;
+
+    var finishPreloader = function () {
+      if (preloadDone) return;
+      preloadDone = true;
+      root.classList.remove("is-preloading");
+      root.classList.add("preloader-done");
+      try {
+        window.sessionStorage.setItem("domiart-preloaded", "1");
+      } catch (e) {
+        /* Private Mode — dann laeuft er beim naechsten Aufruf halt erneut */
+      }
+      if (lenis) lenis.start();
+      if (hasGsap) ScrollTrigger.refresh();
+    };
+
+    if (!preloader || !hasGsap) {
+      finishPreloader();
+    } else {
+      if (lenis) lenis.stop();
+
+      gsap
+        .timeline({ onComplete: finishPreloader })
+        .to(preloader.querySelector(".preloader__emblem"), {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power3.out",
+          startAt: { opacity: 0, scale: 0.92, y: 10 },
+        })
+        .to(
+          preloader.querySelector(".preloader__wortmarke"),
+          {
+            opacity: 1,
+            clipPath: "inset(0 0% 0 0)",
+            duration: 0.55,
+            ease: "power2.out",
+          },
+          0.25
+        )
+        .to(
+          preloader,
+          { opacity: 0, duration: 0.45, ease: "power2.inOut" },
+          0.95
+        )
+        .to(
+          preloader.querySelector(".preloader__inner"),
+          { scale: 1.04, duration: 0.45, ease: "power2.in" },
+          0.95
+        );
+
+      /* Notbremse: haengt GSAP oder ein Asset, ist nach 1,8s trotzdem Schluss */
+      setTimeout(finishPreloader, 1800);
+    }
+  }
+
   /* ---------- Header: Scrolled-State ---------- */
   var header = document.querySelector(".site-header");
   function onScroll() {
