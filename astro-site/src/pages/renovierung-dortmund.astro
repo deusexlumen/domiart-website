@@ -3,10 +3,10 @@ import Base from '../layouts/Base.astro';
 ---
 <Base
   title="Renovierung in Dortmund — DOMIART | Alles aus einer Hand"
-  description="Renovierung in Dortmund von DOMIART: Böden, Wände, Decken, Malerarbeiten und Tapezieren aus einer Hand. Kostenlose Besichtigung & Festpreis-Angebot. ☎ 0155 68820575"
+  description="Renovierung in Dortmund von DOMIART: Malerarbeiten, Verputzarbeiten, Böden, Wände, Decken, Tapezieren sowie Entkernung und Entrümpelung aus einer Hand. Kostenlose Besichtigung & Festpreis-Angebot. ☎ 0155 68820575"
   canonical="https://www.domiart-moresa.de/renovierung-dortmund"
   ogTitle="Renovierung in Dortmund — DOMIART"
-  ogDescription="Frischer Glanz für jeden Raum: DOMIART renoviert in Dortmund komplett aus einer Hand — sauber, termintreu, alles mit einem Ansprechpartner."
+  ogDescription="Frischer Glanz für jeden Raum: DOMIART renoviert in Dortmund komplett aus einer Hand — vom Rückbau über Putz und Farbe bis zum letzten Detail."
   ogImage="/assets/img/og-renovierung.jpg"
 >
   <!-- Strukturierte Daten: Breadcrumb -->
@@ -54,7 +54,19 @@ import Base from '../layouts/Base.astro';
       "@type": "City",
       "name": "Dortmund"
     },
-    "description": "Renovierung in Dortmund aus einer Hand: Böden, Wände, Decken, Malerarbeiten und Tapezieren — sauber ausgeführt und termintreu fertiggestellt."
+    "description": "Renovierung in Dortmund aus einer Hand: Malerarbeiten, Verputzarbeiten, Böden, Wände, Decken und Tapezieren — bei Bedarf inklusive Entkernung und Entrümpelung, sauber ausgeführt und termintreu fertiggestellt.",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Leistungen bei einer Renovierung",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Malerarbeiten" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Verputzarbeiten" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bodenbeläge verlegen" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tapezieren" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Entkernung" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Entrümpelung" } }
+      ]
+    }
   }
   </script>
 
@@ -68,8 +80,8 @@ import Base from '../layouts/Base.astro';
           <span class="accent">aus einer Hand.</span>
         </h1>
         <p class="lead lead--light subhero__sub" data-reveal>
-          Frischer Glanz für jeden Raum: Böden, Wände, Decken und
-          Malerarbeiten — DOMIART renoviert Ihre Wohnräume termintreu und
+          Frischer Glanz für jeden Raum: Maler- und Verputzarbeiten, Böden,
+          Wände und Decken — DOMIART renoviert Ihre Wohnräume termintreu und
           mit einem festen Ansprechpartner für das ganze Projekt.
         </p>
         <div class="hero__actions" data-reveal>
@@ -96,10 +108,19 @@ import Base from '../layouts/Base.astro';
         </p>
         <p>
           Als Generalunternehmen aus Dortmund übernehmen wir jedes Gewerk,
-          das für Ihre Renovierung nötig ist: Böden verlegen, Wände und
-          Decken streichen oder tapezieren, kleine Umbauten erledigen. Sie
-          haben einen Ansprechpartner — den Inhaber persönlich — statt
-          mehrerer Handwerker, die Sie selbst koordinieren müssten.
+          das für Ihre Renovierung nötig ist: alte Beläge und Einbauten
+          zurückbauen, verputzen und spachteln, Böden verlegen, Wände und
+          Decken streichen oder tapezieren. Sie haben einen Ansprechpartner —
+          den Inhaber persönlich — statt mehrerer Handwerker, die Sie selbst
+          koordinieren müssten.
+        </p>
+        <p>
+          Deshalb finden Sie bei uns Malerarbeiten, Verputzarbeiten und den
+          Rückbau nicht als einzelne Angebote: In der Praxis greifen sie
+          ineinander. Der Putz muss stehen, bevor die Farbe kommt, und der
+          alte Belag muss raus, bevor der neue liegt. Wir planen das als ein
+          Projekt mit einem Zeitplan — und übernehmen einzelne Arbeiten
+          natürlich trotzdem, wenn genau das gebraucht wird.
         </p>
       </div>
     </section>
@@ -111,7 +132,8 @@ import Base from '../layouts/Base.astro';
           <p class="eyebrow">Leistungsumfang</p>
           <h2 class="display-lg">Ihre Renovierung —<br>komplett aus einer Hand.</h2>
           <p class="lead">
-            Diese Arbeiten decken wir bei einer Renovierung ab. Sie müssen
+            Diese Arbeiten decken wir bei einer Renovierung ab — in der
+            Reihenfolge, in der sie auf der Baustelle anfallen. Sie müssen
             keinen einzigen weiteren Handwerker koordinieren.
           </p>
         </div>
@@ -119,15 +141,35 @@ import Base from '../layouts/Base.astro';
         <ul class="about__list" data-reveal>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Entkernung und Rückbau: alte Beläge, Einbauten und Sanitärobjekte raus
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Entrümpelung und fachgerechte Entsorgung, besenreine Übergabe
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Innen- und Reparaturputz als Untergrund für Anstrich oder Tapete
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Außenputz, Dämmputz und Oberputz-Strukturen für die Fassade
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Spachteln, Untergrundvorbereitung und Rissreparatur
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Malerarbeiten: Wände &amp; Decken streichen und tapezieren
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Türen, Zargen und Heizkörper aufarbeiten und lackieren
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
             Bodenbeläge: Parkett, Laminat, Vinyl und Fliesen verlegen
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            Wände &amp; Decken streichen, spachteln und tapezieren
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            Türen und Zargen aufarbeiten und lackieren
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -149,16 +191,36 @@ import Base from '../layouts/Base.astro';
         <div class="section-head" data-reveal>
           <p class="eyebrow eyebrow--light">Einblicke</p>
           <h2 class="display-lg">Aus der Baustelle<br>wird ein Zuhause.</h2>
+          <p class="lead lead--light">
+            Eine Renovierung in der Reihenfolge, in der sie wirklich abläuft —
+            vom Rückbau bis zum fertigen Raum.
+          </p>
         </div>
 
-        <div class="gallery-grid gallery-grid--duo">
+        <div class="gallery-grid gallery-grid--trio">
           <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Wohnraum zu Beginn der Renovierung">
             <img src="/assets/img/leistungen/renovierung-vorher.webp" alt="Wohnraum in Dortmund zu Beginn der Renovierung — alter Bodenbelag entfernt, Wände vorbereitet" loading="lazy">
-            <span class="gallery-item__cat">Vorher</span>
+            <span class="gallery-item__cat">Ausgangslage</span>
           </button>
-          <button type="button" class="gallery-item" data-reveal data-reveal-delay="0.08" aria-label="Bild vergrößern: Fertig renovierter Wohnraum">
+          <button type="button" class="gallery-item" data-reveal data-reveal-delay="0.08" aria-label="Bild vergrößern: Wanddurchbruch während des Rückbaus">
+            <img src="/assets/img/leistungen/entkernung-durchbruch.webp" alt="Wanddurchbruch während der Entkernung — kontrolliert gestemmt, Bauschutt direkt aufgenommen" loading="lazy">
+            <span class="gallery-item__cat">Rückbau</span>
+          </button>
+          <button type="button" class="gallery-item" data-reveal data-reveal-delay="0.16" aria-label="Bild vergrößern: Frisch verputzter Flur">
+            <img src="/assets/img/leistungen/verputz-innen.webp" alt="Frisch verputzter Flur — glatte Wände und saubere Kanten vor dem Anstrich" loading="lazy">
+            <span class="gallery-item__cat">Putz</span>
+          </button>
+          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Deckenschliff mit dem Langhalsschleifer">
+            <img src="/assets/img/leistungen/maler-deckenschliff.webp" alt="Adrian Polaczek schleift eine gespachtelte Decke mit dem Langhalsschleifer — Vorbereitung für den Anstrich" loading="lazy">
+            <span class="gallery-item__cat">Schliff</span>
+          </button>
+          <button type="button" class="gallery-item" data-reveal data-reveal-delay="0.08" aria-label="Bild vergrößern: Fertig gestrichener Raum">
+            <img src="/assets/img/leistungen/maler-fertig.webp" alt="Fertig gestrichener Raum — makellose weiße Wände und Decken ohne Ansätze" loading="lazy">
+            <span class="gallery-item__cat">Anstrich</span>
+          </button>
+          <button type="button" class="gallery-item" data-reveal data-reveal-delay="0.16" aria-label="Bild vergrößern: Fertig renovierter Wohnraum">
             <img src="/assets/img/leistungen/renovierung-nachher.webp" alt="Fertig renovierter Wohnraum — frisch gestrichene Wände und saubere Anschlüsse" loading="lazy">
-            <span class="gallery-item__cat">Nachher</span>
+            <span class="gallery-item__cat">Fertig</span>
           </button>
         </div>
       </div>
@@ -233,6 +295,33 @@ import Base from '../layouts/Base.astro';
             </summary>
             <div class="faq-item__body">
               <p>In der Regel nicht. Wir decken Möbel und Wege sauber ab und hinterlassen die Baustelle täglich ordentlich, damit Sie weiter in Ihrer Wohnung leben können.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>
+              Kann ich auch nur einzelne Arbeiten beauftragen?
+              <span class="faq-item__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-item__body">
+              <p>Ja. Nur die Wände streichen, nur eine Wand verputzen, nur den Keller entrümpeln — das geht selbstverständlich. Die Stärke von DOMIART liegt allerdings dort, wo mehrere Arbeiten zusammenkommen: dann muss niemand Termine zwischen verschiedenen Betrieben abstimmen.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>
+              Wie lange muss ich nach dem Streichen lüften?
+              <span class="faq-item__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-item__body">
+              <p>Bei üblicher Dispersionsfarbe reichen meist wenige Stunden gutes Lüften, bis der Raum wieder normal genutzt werden kann. Wir informieren Sie konkret zur verwendeten Farbe.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>
+              Übernehmen Sie auch Entkernung und Entrümpelung?
+              <span class="faq-item__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-item__body">
+              <p>Ja, beides gehört bei uns zur Renovierung dazu — inklusive fachgerechter Entsorgung und besenreiner Übergabe. Eine normal möblierte Wohnung ist häufig innerhalb eines Tages geräumt; bei größeren Objekten planen wir gemeinsam einen realistischen Zeitrahmen.</p>
             </div>
           </details>
         </div>

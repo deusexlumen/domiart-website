@@ -990,12 +990,34 @@ body.nav-open .nav-toggle span::after {
   gap: clamp(14px, 2vw, 24px);
 }
 
+/* Sechs-Bild-Variante auf der Renovierungsseite: erzaehlt den Ablauf einer */
+/* Baustelle in zwei Reihen a drei Bildern.                                */
+.gallery-grid--trio {
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: clamp(14px, 2vw, 24px);
+}
+
 .gallery-grid--duo .gallery-item {
   aspect-ratio: 4 / 3;
 }
 
+/* Quadratisch, nicht 4:3: die Baustellenfotos sind fast alle hochkant       */
+/* aufgenommen. Ein Querformat-Rahmen wuerde ihnen knapp die Haelfte der     */
+/* Hoehe wegschneiden — und damit genau das Motiv (Decke, Wand, Durchbruch). */
+.gallery-grid--trio .gallery-item {
+  aspect-ratio: 1 / 1;
+}
+
+@media (max-width: 900px) {
+  .gallery-grid--trio {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 700px) {
-  .gallery-grid--duo {
+  .gallery-grid--duo,
+  .gallery-grid--trio {
     grid-template-columns: 1fr;
   }
 }
