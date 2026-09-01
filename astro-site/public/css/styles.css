@@ -77,6 +77,31 @@ a {
   text-decoration: none;
 }
 
+/* Links im Fliesstext muessen als Links lesbar sein - die Basisregel oben  */
+/* nimmt ihnen jede Auszeichnung. Gilt fuer helle wie dunkle Abschnitte,    */
+/* die Farbe kommt jeweils aus currentColor der Umgebung.                   */
+.prose a,
+.lead a {
+  color: var(--azure);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.25s var(--ease-out);
+}
+
+.lead--light a {
+  color: #7fc4f0;
+}
+
+.prose a:hover,
+.lead a:hover {
+  color: var(--blue);
+}
+
+.lead--light a:hover {
+  color: var(--white);
+}
+
 ul {
   list-style: none;
 }
@@ -812,6 +837,35 @@ body.nav-open .nav-toggle span::after {
 .service-card p {
   font-size: 0.95rem;
   color: var(--grey);
+}
+
+/* Innenausbau ist bei DOMIART die Klammer ueber Trockenbau, Maler, Verputz, */
+/* Bad, Boeden und Tapeten - nicht ein Gewerk neben ihnen. Die Karte traegt  */
+/* deshalb die Markenfarbe und laeuft ueber die volle Rasterbreite.          */
+.service-card--umbrella {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--navy), #16345c);
+  border-color: transparent;
+}
+
+.service-card--umbrella h3,
+.service-card--umbrella p {
+  color: var(--white);
+}
+
+.service-card--umbrella p {
+  opacity: 0.86;
+  max-width: 62ch;
+}
+
+.service-card--umbrella .service-card__icon {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+}
+
+.service-card--umbrella .service-card__tags li {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .service-card__tags {

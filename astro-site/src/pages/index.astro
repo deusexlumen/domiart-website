@@ -184,7 +184,9 @@ import Base from '../layouts/Base.astro';
           <p class="lead">
             Von der Entkernung bis zum letzten Anstrich: DOMIART übernimmt
             Ihr komplettes Projekt — Sie haben einen festen Ansprechpartner
-            und müssen sich um nichts kümmern.
+            und müssen sich um nichts kümmern. Den größten Teil davon fasst
+            der Innenausbau zusammen; die Gewerke darunter greifen auf der
+            Baustelle ohnehin ineinander.
           </p>
         </div>
 
@@ -230,7 +232,23 @@ import Base from '../layouts/Base.astro';
             <a href="/badsanierung-dortmund" class="service-card__link">Mehr dazu →</a>
           </article>
 
-          <article class="service-card" data-reveal>
+          <article class="service-card service-card--umbrella" data-reveal>
+            <span class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="1"/><circle cx="14.5" cy="12" r="1.1" fill="currentColor" stroke="none"/><path d="M3 21h18"/></svg>
+            </span>
+            <h3>Innenausbau</h3>
+            <p>Unser größter Bereich — und die Klammer um alles, was innen passiert: Trockenbau, Malerarbeiten, Verputzarbeiten, Badsanierungen, Böden und Tapeten.</p>
+            <ul class="service-card__tags">
+              <li>Trockenbau</li>
+              <li>Maler</li>
+              <li>Verputz</li>
+              <li>Bad</li>
+              <li>Böden</li>
+              <li>Tapeten</li>
+            </ul>
+          </article>
+
+          <article class="service-card" data-reveal data-reveal-delay="0.08">
             <span class="service-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4" width="15" height="16" rx="1"/><path d="M4.5 12h15M9.5 4v8M14.5 12v8"/></svg>
             </span>
@@ -274,19 +292,6 @@ import Base from '../layouts/Base.astro';
 
           <article class="service-card" data-reveal>
             <span class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="1"/><circle cx="14.5" cy="12" r="1.1" fill="currentColor" stroke="none"/><path d="M3 21h18"/></svg>
-            </span>
-            <h3>Innenausbau</h3>
-            <p>Der Feinschliff für Ihr Zuhause: Bodenbeläge, Tapeten, Treppen und Details, die den Unterschied machen.</p>
-            <ul class="service-card__tags">
-              <li>Bodenbeläge</li>
-              <li>Tapeten</li>
-              <li>Details</li>
-            </ul>
-          </article>
-
-          <article class="service-card" data-reveal data-reveal-delay="0.08">
-            <span class="service-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.8 11H5.8L4 9Z"/><path d="M8 9V6.5A1.5 1.5 0 0 1 9.5 5h5A1.5 1.5 0 0 1 16 6.5V9"/><path d="M9 13v4M15 13v4"/></svg>
             </span>
             <h3>Entkernung &amp; Entrümpelung</h3>
@@ -303,6 +308,47 @@ import Base from '../layouts/Base.astro';
     </section>
 
     <div class="fugen-strip" aria-hidden="true"></div>
+
+    <!-- ================= Oberreferenz: Scheunenausbau ================= -->
+    <!-- Steht bewusst direkt hinter den Leistungen: Adrian nennt den      -->
+    <!-- Scheunenausbau die Oberreferenz fuer den Innenausbau - ein        -->
+    <!-- Projekt, in dem alle Gewerke auf einmal zu sehen sind.            -->
+    <section class="section video-feature">
+      <div class="container">
+        <div data-reveal>
+          <p class="eyebrow">Unsere Oberreferenz</p>
+          <h2 class="display-lg">Vom Rohbau<br>zum Zuhause.</h2>
+          <p class="lead" style="margin: 22px 0 34px;">
+            Keine Hochglanz-Inszenierung — sondern echte Handwerksarbeit.
+            Hier: der komplette Ausbau einer alten Scheune zum modernen
+            Wohnraum, alles aus einer Hand. An diesem einen Projekt sehen
+            Sie jedes Gewerk, das oben steht.
+          </p>
+          <a href="/#anfrage" class="btn btn--dark">
+            Ihr Projekt anfragen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="video-frame" data-reveal>
+          <video src="/assets/video/scheune-nachher.mp4" playsinline loop muted preload="metadata" poster="/assets/img/scheune-nachher-poster.webp"></video>
+          <div class="video-frame__bar">
+            <button class="video-frame__btn" aria-label="Video abspielen / pausieren">
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+            </button>
+            <div class="video-switch" role="group" aria-label="Scheunenausbau: Vorher oder Nachher zeigen">
+              <button type="button" class="video-switch__opt" aria-pressed="false"
+                data-src="/assets/video/scheune-vorher.mp4"
+                data-poster="/assets/img/scheune-vorher-poster.webp">Vorher</button>
+              <button type="button" class="video-switch__opt is-active" aria-pressed="true"
+                data-src="/assets/video/scheune-nachher.mp4"
+                data-poster="/assets/img/scheune-nachher-poster.webp">Nachher</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ================= Vorher / Nachher ================= -->
     <section id="vorher-nachher" class="section">
@@ -447,7 +493,6 @@ import Base from '../layouts/Base.astro';
                 <button type="button" class="config__option" data-field="bereich" data-value="Bad / Gäste-WC">Bad / Gäste-WC</button>
                 <button type="button" class="config__option" data-field="bereich" data-value="Wohnräume">Wohnräume</button>
                 <button type="button" class="config__option" data-field="bereich" data-value="Keller / Dachboden">Keller / Dachboden</button>
-                <button type="button" class="config__option" data-field="bereich" data-value="Außenbereich / Zaun">Außenbereich / Zaun</button>
                 <button type="button" class="config__option" data-field="bereich" data-value="Komplette Immobilie">Komplette Immobilie</button>
                 <button type="button" class="config__option" data-field="bereich" data-value="Entkernung / Entrümpelung">Entkernung / Entrümpelung</button>
               </div>
@@ -520,7 +565,9 @@ import Base from '../layouts/Base.astro';
           <h2 class="display-lg">Echte Arbeit.<br>Echte Ergebnisse.</h2>
           <p class="lead lead--light">
             Einblicke in unsere Projekte — von der Badsanierung
-            über den Innenausbau bis zum kompletten Bodenbelag.
+            über den Innenausbau bis zum kompletten Bodenbelag. In der
+            Mitte: das große Bad mit Flur, an dem sich am besten zeigt,
+            worauf es uns ankommt.
           </p>
         </div>
 
@@ -533,21 +580,21 @@ import Base from '../layouts/Base.astro';
             <img src="/assets/img/projekte/projekt-2.webp" alt="Sanierte Altbau-Diele mit Doppeltür" loading="lazy">
             <span class="gallery-item__cat">Innenausbau</span>
           </button>
-          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Modernes grau gefliestes Badezimmer">
-            <img src="/assets/img/projekte/projekt-3.webp" alt="Modernes grau gefliestes Badezimmer" loading="lazy">
-            <span class="gallery-item__cat">Badsanierung</span>
+          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Das große Bad — geflieste Dusch- und WC-Nische am Fenster">
+            <img src="/assets/img/projekte/projekt-3.webp" alt="Das große Bad: Dusch- und WC-Nische in grauen Großformatfliesen, sauber ums Fenster geführt" loading="lazy">
+            <span class="gallery-item__cat">Das große Bad</span>
           </button>
-          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Gäste-WC mit grauen Großformat-Fliesen">
-            <img src="/assets/img/projekte/projekt-4.webp" alt="Gäste-WC mit grauen Großformat-Fliesen" loading="lazy">
-            <span class="gallery-item__cat">Fliesenarbeit</span>
+          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Das große Bad — Fugenbild und gerade eingeputzte Abschlussschiene">
+            <img src="/assets/img/projekte/projekt-4.webp" alt="Das große Bad im Detail: durchlaufendes Fugenbild und die schnurgerade eingeputzte Abschlussschiene über den Wandfliesen" loading="lazy">
+            <span class="gallery-item__cat">Das große Bad</span>
           </button>
           <button type="button" class="gallery-item gallery-item--tall" data-reveal aria-label="Bild vergrößern: Flur mit neu verlegtem Vinyl-Designboden">
             <img src="/assets/img/projekte/projekt-5.webp" alt="Flur mit neu verlegtem Vinyl-Designboden" loading="lazy">
             <span class="gallery-item__cat">Bodenbeläge</span>
           </button>
-          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Saniertes Bad mit WC und verkleideter Wanne">
-            <img src="/assets/img/projekte/projekt-6.webp" alt="Saniertes Bad mit WC und verkleideter Wanne" loading="lazy">
-            <span class="gallery-item__cat">Sanierung</span>
+          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Der geflieste Aufgang im Flur, absolut eben verlegt">
+            <img src="/assets/img/projekte/projekt-6.webp" alt="Der Aufgang zur Haustür im selben Projekt: großformatige Fliesen absolut eben verlegt, mit sauberer Schiene an der Stufenkante" loading="lazy">
+            <span class="gallery-item__cat">Das große Bad · Flur</span>
           </button>
           <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Detailaufnahme Duschrinne mit sauberem Fliesenübergang">
             <img src="/assets/img/projekte/bad-dusch-rinne.webp" alt="Detailaufnahme Duschrinne mit sauberem Fliesenübergang" loading="lazy">
@@ -561,43 +608,6 @@ import Base from '../layouts/Base.astro';
             <img src="/assets/img/projekte/boden-zarge-praezision.webp" alt="Millimetergenauer Vinylboden-Abschluss an der Türzarge" loading="lazy">
             <span class="gallery-item__cat">Bodenbeläge</span>
           </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= Video-Einblick: Scheunenausbau ================= -->
-    <section class="section video-feature">
-      <div class="container">
-        <div data-reveal>
-          <p class="eyebrow">Unser Referenzprojekt</p>
-          <h2 class="display-lg">Vom Rohbau<br>zum Zuhause.</h2>
-          <p class="lead" style="margin: 22px 0 34px;">
-            Keine Hochglanz-Inszenierung — sondern echte Handwerksarbeit.
-            Hier: der komplette Ausbau einer alten Scheune zum modernen
-            Wohnraum, alles aus einer Hand.
-          </p>
-          <a href="/#anfrage" class="btn btn--dark">
-            Ihr Projekt anfragen
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <div class="video-frame" data-reveal>
-          <video src="/assets/video/scheune-nachher.mp4" playsinline loop muted preload="metadata" poster="/assets/img/scheune-nachher-poster.webp"></video>
-          <div class="video-frame__bar">
-            <button class="video-frame__btn" aria-label="Video abspielen / pausieren">
-              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-              <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-            </button>
-            <div class="video-switch" role="group" aria-label="Scheunenausbau: Vorher oder Nachher zeigen">
-              <button type="button" class="video-switch__opt" aria-pressed="false"
-                data-src="/assets/video/scheune-vorher.mp4"
-                data-poster="/assets/img/scheune-vorher-poster.webp">Vorher</button>
-              <button type="button" class="video-switch__opt is-active" aria-pressed="true"
-                data-src="/assets/video/scheune-nachher.mp4"
-                data-poster="/assets/img/scheune-nachher-poster.webp">Nachher</button>
-            </div>
-          </div>
         </div>
       </div>
     </section>
