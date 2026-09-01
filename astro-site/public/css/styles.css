@@ -535,6 +535,10 @@ h4 {
   display: none;
   width: 46px;
   height: 46px;
+  /* Ohne das hier quetscht der Header-Flexbox den Button auf ~28px    */
+  /* zusammen, sobald Logo + Abstand knapp wird (< ca. 395px Breite) — */
+  /* er ist der einzige Button ohne flex:none und schrumpft als erster. */
+  flex-shrink: 0;
   border-radius: 12px;
   border: 1px solid var(--line-dark);
   place-items: center;
@@ -1784,7 +1788,9 @@ body.nav-open .nav-toggle span::after {
   padding-block: 26px;
   font-size: 0.8rem;
   line-height: 1.9;
-  color: rgba(139, 160, 184, 0.6);
+  /* War Alpha 0.6 = 3.27:1 Kontrast, WCAG AA verlangt 4.5:1 bei dieser  */
+  /* Groesse. 0.8 = 4.96:1, mit Puffer nach oben.                       */
+  color: rgba(139, 160, 184, 0.8);
   border-bottom: 1px solid var(--line-dark);
 }
 
