@@ -839,6 +839,77 @@ body.nav-open .nav-toggle span::after {
   color: var(--grey);
 }
 
+/* ==========================================================================
+   Handschrift-Band
+   Adrians eigene Idee, woertlich: das Bild von ihm beim Stemmen "transparent
+   gelassen und dann halt ein bisschen Text dabei" - und beim Runterscrollen
+   "einfach zwischendurch so gesehen in einem Moment". Das Foto liegt als
+   ruhige Ebene unter dem Text, nicht als Deko daneben.
+   ========================================================================== */
+.signature-band {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy);
+  padding: clamp(72px, 12vw, 132px) 0;
+}
+
+.signature-band__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 38%;
+  opacity: 0.34;
+  filter: grayscale(0.3) contrast(1.06);
+}
+
+/* Verlauf von links: haelt die Textseite ruhig, laesst ihn rechts stehen. */
+.signature-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    var(--navy) 0%,
+    rgba(10, 26, 51, 0.9) 34%,
+    rgba(10, 26, 51, 0.45) 70%,
+    rgba(10, 26, 51, 0.2) 100%
+  );
+}
+
+.signature-band > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.signature-band__line {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 5.2vw, 3.4rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-top: 14px;
+  max-width: 16ch;
+  text-wrap: balance;
+}
+
+/* .accent ist sonst nur in Hero und Subhero definiert. */
+.signature-band__line .accent {
+  color: var(--azure);
+}
+
+@media (max-width: 700px) {
+  /* Hochkant rueckt das Motiv aus dem Bild - dann lieber flaechig dunkel. */
+  .signature-band__photo {
+    object-position: 70% 40%;
+    opacity: 0.26;
+  }
+}
+
 /* Innenausbau ist bei DOMIART die Klammer ueber Trockenbau, Maler, Verputz, */
 /* Bad, Boeden und Tapeten - nicht ein Gewerk neben ihnen. Die Karte traegt  */
 /* deshalb die Markenfarbe und laeuft ueber die volle Rasterbreite.          */
