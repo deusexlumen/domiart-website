@@ -1758,6 +1758,28 @@ body.nav-open .nav-toggle span::after {
   color: var(--azure);
 }
 
+/* Touch-Geraete: Trefferflaechen auf Daumengroesse bringen. Gilt nur    */
+/* fuer grobe Zeiger, damit das Layout mit Maus unveraendert bleibt.     */
+/* Gemessen waren Fusszeilen-Links 17-18px und "Mehr dazu" 23px hoch.    */
+@media (pointer: coarse) {
+  .footer-col a,
+  .footer-bottom a,
+  .footer-social {
+    display: inline-block;
+    padding-block: 12px;
+  }
+
+  .footer-col ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-card__link {
+    padding-block: 11px;
+    margin-top: 8px;
+  }
+}
+
 .footer-keywords {
   padding-block: 26px;
   font-size: 0.8rem;
