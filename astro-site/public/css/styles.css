@@ -913,12 +913,10 @@ body.nav-open .nav-toggle span::after {
 /* Innenausbau ist bei DOMIART die Klammer ueber Trockenbau, Maler, Verputz, */
 /* Bad, Boeden und Tapeten - nicht ein Gewerk neben ihnen. Die Karte traegt  */
 /* deshalb die Markenfarbe und laeuft ueber die volle Rasterbreite.          */
-/* Zwei Spalten, nicht drei: bei voller Breite bliebe von den sieben     */
-/* uebrigen Karten immer eine allein in der letzten Reihe stehen. So     */
-/* geht das Raster glatt auf (3 / Klammer+1 / 3) und die Klammer bleibt  */
-/* trotzdem das groesste Element im Block.                               */
+/* Volle Rasterbreite: neben der Klammer stehen neun normale Karten, das */
+/* teilt sich glatt in 3 / Klammer / 3 / 3.                              */
 .service-card--umbrella {
-  grid-column: span 2;
+  grid-column: 1 / -1;
   background: linear-gradient(135deg, var(--navy), #16345c);
   border-color: transparent;
 }

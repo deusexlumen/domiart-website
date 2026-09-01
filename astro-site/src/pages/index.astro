@@ -16,7 +16,7 @@ import Base from '../layouts/Base.astro';
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Was kostet eine Badsanierung in Dortmund?",
+        "name": "Was kosten Fliesenarbeiten in Dortmund?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Das hängt von Größe, Zustand und Ihren Wünschen ab. Nach einer kostenlosen Besichtigung vor Ort erhalten Sie von DOMIART ein transparentes Festpreis-Angebot — ohne versteckte Kosten."
@@ -27,7 +27,7 @@ import Base from '../layouts/Base.astro';
         "name": "Wie lange dauert eine Sanierung?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Eine typische Badsanierung dauert etwa zwei bis vier Wochen. Größere Modernisierungen planen wir gemeinsam mit Ihnen — mit verbindlichem Zeitplan, auf den Sie sich verlassen können."
+          "text": "Ein durchschnittliches Bad ist in etwa einer Woche gefliest, größere Flächen entsprechend länger. Größere Modernisierungen planen wir gemeinsam mit Ihnen — mit verbindlichem Zeitplan, auf den Sie sich verlassen können."
         }
       },
       {
@@ -126,8 +126,8 @@ import Base from '../layouts/Base.astro';
     <!-- ================= Keyword-Ticker ================= -->
     <div class="ticker" aria-hidden="true">
       <div class="ticker__track">
-        <span>Modernisierung</span><span>Renovierung</span><span>Sanierung</span><span>Trockenbau</span><span>Malerarbeiten</span><span>Verputzarbeiten</span><span>Innenausbau</span><span>Entkernung</span><span>Entrümpelung</span><span>Badsanierung</span>
-        <span>Modernisierung</span><span>Renovierung</span><span>Sanierung</span><span>Trockenbau</span><span>Malerarbeiten</span><span>Verputzarbeiten</span><span>Innenausbau</span><span>Entkernung</span><span>Entrümpelung</span><span>Badsanierung</span>
+        <span>Modernisierung</span><span>Renovierung</span><span>Sanierung</span><span>Trockenbau</span><span>Malerarbeiten</span><span>Verputzarbeiten</span><span>Innenausbau</span><span>Entkernung</span><span>Entrümpelung</span><span>Fliesenarbeiten</span><span>Tapezierarbeiten</span>
+        <span>Modernisierung</span><span>Renovierung</span><span>Sanierung</span><span>Trockenbau</span><span>Malerarbeiten</span><span>Verputzarbeiten</span><span>Innenausbau</span><span>Entkernung</span><span>Entrümpelung</span><span>Fliesenarbeiten</span><span>Tapezierarbeiten</span>
       </div>
     </div>
 
@@ -172,6 +172,48 @@ import Base from '../layouts/Base.astro';
             </div>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ================= Vorher / Nachher ================= -->
+    <!-- Steht bewusst weit oben, direkt hinter dem Vertrauens-Band:      -->
+    <!-- Adrian: "Das Vorher-Nachher, das waer schon ganz wichtig."       -->
+    <!-- Der sichtbare Beweis kommt vor der Leistungsliste.               -->
+    <section id="vorher-nachher" class="section">
+      <div class="container">
+        <div class="ba-wrap">
+          <div class="ba-slider" data-reveal aria-label="Vorher-Nachher-Vergleich: Diele mit Doppeltür">
+            <img src="/assets/img/flur-vorher.webp" alt="Diele im Rohzustand vor der Renovierung — Baustelle, alte Doppeltür" loading="lazy">
+            <img class="ba-slider__after" src="/assets/img/flur-nachher.webp" alt="Diele nach der Renovierung — neuer Vinylboden, restaurierte Doppeltür mit Glaseinsätzen, frisch gestrichen" loading="lazy">
+            <span class="ba-slider__label ba-slider__label--before">Vorher</span>
+            <span class="ba-slider__label ba-slider__label--after">Nachher</span>
+            <div class="ba-slider__handle" role="slider" tabindex="0" aria-label="Vorher-Nachher-Regler" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+          </div>
+
+          <div class="ba-copy" data-reveal>
+            <p class="eyebrow">Vorher / Nachher</p>
+            <h2 class="display-lg">Sehen Sie selbst,<br>was möglich ist.</h2>
+            <p class="lead">
+              Ziehen Sie den Regler und erleben Sie den Unterschied: Aus
+              Baustelle wird Zuhause. Genau diese Verwandlung liefern wir —
+              bei jedem Projekt, in jedem Raum.
+            </p>
+            <ul class="ba-facts">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Kompletter Innenausbau von der Entkernung bis zum letzten Handgriff
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Saubere Baustelle und Rücksicht auf Ihr Zuhause
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Feste Termine, auf die Sie sich verlassen können
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -220,16 +262,15 @@ import Base from '../layouts/Base.astro';
 
           <article class="service-card" data-reveal data-reveal-delay="0.16">
             <span class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13h16v1.5a5.5 5.5 0 0 1-5.5 5.5h-5A5.5 5.5 0 0 1 4 14.5V13Z"/><path d="M6 13V5.5A1.5 1.5 0 0 1 7.5 4h.4A1.6 1.6 0 0 1 9.5 5.6"/><path d="M7 20l-1 1.5M17 20l1 1.5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/><path d="M9 6v6M15 12v6M15 0v6M9 12v6"/></svg>
             </span>
-            <h3>Sanierung &amp; Badsanierung</h3>
-            <p>Vom alten Bad zum modernen Wohlfühlraum: Fliesen, Sanitär-Vorbereitung, Abdichtung und Veredelung in Profiqualität.</p>
+            <h3>Sanierung</h3>
+            <p>Wenn es tiefer geht als eine Renovierung: alte Aufbauten zurückbauen, Untergründe instand setzen und den Raum von Grund auf neu aufbauen.</p>
             <ul class="service-card__tags">
-              <li>Bad</li>
-              <li>Fliesen</li>
-              <li>Abdichtung</li>
+              <li>Altbau</li>
+              <li>Rückbau</li>
+              <li>Neuaufbau</li>
             </ul>
-            <a href="/badsanierung-dortmund" class="service-card__link">Mehr dazu →</a>
           </article>
 
           <article class="service-card service-card--umbrella" data-reveal>
@@ -237,15 +278,29 @@ import Base from '../layouts/Base.astro';
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="1"/><circle cx="14.5" cy="12" r="1.1" fill="currentColor" stroke="none"/><path d="M3 21h18"/></svg>
             </span>
             <h3>Innenausbau</h3>
-            <p>Unser größter Bereich — und die Klammer um alles, was innen passiert: Trockenbau, Malerarbeiten, Verputzarbeiten, Badsanierungen, Böden und Tapeten.</p>
+            <p>Unser größter Bereich — und die Klammer um alles, was innen passiert: Trockenbau, Fliesen-, Maler-, Verputz- und Tapezierarbeiten sowie Böden.</p>
             <ul class="service-card__tags">
               <li>Trockenbau</li>
+              <li>Fliesen</li>
               <li>Maler</li>
               <li>Verputz</li>
-              <li>Bad</li>
-              <li>Böden</li>
               <li>Tapeten</li>
+              <li>Böden</li>
             </ul>
+          </article>
+
+          <article class="service-card" data-reveal>
+            <span class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="6.5" rx="1"/><rect x="13" y="4" width="8" height="6.5" rx="1"/><rect x="3" y="13.5" width="8" height="6.5" rx="1"/><rect x="13" y="13.5" width="8" height="6.5" rx="1"/></svg>
+            </span>
+            <h3>Fliesenarbeiten</h3>
+            <p>Boden und Wand, Großformat bis Mosaik: exakt ausgerichtet, mit durchlaufendem Fugenbild und sauber eingeputzten Schienen.</p>
+            <ul class="service-card__tags">
+              <li>Boden &amp; Wand</li>
+              <li>Großformat</li>
+              <li>Fugenbild</li>
+            </ul>
+            <a href="/fliesenarbeiten-dortmund" class="service-card__link">Mehr dazu →</a>
           </article>
 
           <article class="service-card" data-reveal data-reveal-delay="0.08">
@@ -290,7 +345,20 @@ import Base from '../layouts/Base.astro';
             <a href="/renovierung-dortmund" class="service-card__link">Teil unserer Renovierung →</a>
           </article>
 
-          <article class="service-card" data-reveal>
+          <article class="service-card" data-reveal data-reveal-delay="0.08">
+            <span class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10a2 2 0 0 1 2 2v3H9"/><path d="M9 8v13l-4-2.5V5a2 2 0 0 1 2-2"/><path d="M19 8v3a2 2 0 0 1-2 2h-8"/></svg>
+            </span>
+            <h3>Tapezierarbeiten</h3>
+            <p>Vlies, Raufaser oder Mustertapete — sauber angesetzt, ohne offene Nähte und mit passgenauem Anschluss an Ecken und Zargen.</p>
+            <ul class="service-card__tags">
+              <li>Vliestapete</li>
+              <li>Raufaser</li>
+              <li>Mustertapete</li>
+            </ul>
+          </article>
+
+          <article class="service-card" data-reveal data-reveal-delay="0.16">
             <span class="service-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.8 11H5.8L4 9Z"/><path d="M8 9V6.5A1.5 1.5 0 0 1 9.5 5h5A1.5 1.5 0 0 1 16 6.5V9"/><path d="M9 13v4M15 13v4"/></svg>
             </span>
@@ -350,45 +418,6 @@ import Base from '../layouts/Base.astro';
       </div>
     </section>
 
-    <!-- ================= Vorher / Nachher ================= -->
-    <section id="vorher-nachher" class="section">
-      <div class="container">
-        <div class="ba-wrap">
-          <div class="ba-slider" data-reveal aria-label="Vorher-Nachher-Vergleich: Diele mit Doppeltür">
-            <img src="/assets/img/flur-vorher.webp" alt="Diele im Rohzustand vor der Renovierung — Baustelle, alte Doppeltür" loading="lazy">
-            <img class="ba-slider__after" src="/assets/img/flur-nachher.webp" alt="Diele nach der Renovierung — neuer Vinylboden, restaurierte Doppeltür mit Glaseinsätzen, frisch gestrichen" loading="lazy">
-            <span class="ba-slider__label ba-slider__label--before">Vorher</span>
-            <span class="ba-slider__label ba-slider__label--after">Nachher</span>
-            <div class="ba-slider__handle" role="slider" tabindex="0" aria-label="Vorher-Nachher-Regler" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
-          </div>
-
-          <div class="ba-copy" data-reveal>
-            <p class="eyebrow">Vorher / Nachher</p>
-            <h2 class="display-lg">Sehen Sie selbst,<br>was möglich ist.</h2>
-            <p class="lead">
-              Ziehen Sie den Regler und erleben Sie den Unterschied: Aus
-              Baustelle wird Zuhause. Genau diese Verwandlung liefern wir —
-              bei jedem Projekt, in jedem Raum.
-            </p>
-            <ul class="ba-facts">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                Kompletter Innenausbau von der Entkernung bis zum letzten Handgriff
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                Saubere Baustelle und Rücksicht auf Ihr Zuhause
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                Feste Termine, auf die Sie sich verlassen können
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ================= Signature: Vom Plan zum Raum ================= -->
     <section id="signatur" class="signature" aria-label="Vom Plan zum Raum">
       <div class="signature__pin">
@@ -440,7 +469,10 @@ import Base from '../layouts/Base.astro';
                 <path class="bp-draw" d="M776 30 V470"/>
                 <path class="bp-draw" d="M768 30 H784 M768 470 H784"/>
               </g>
-              <g class="bp-label" fill="currentColor" stroke="none" font-size="17" font-family="'Bricolage Grotesque', sans-serif" text-anchor="middle">
+              <!-- Gewicht 500 statt 400: das ist der einzige Ort, an dem der -->
+              <!-- 400er Schnitt vorkam - drei Massangaben. Fuer die laedt    -->
+              <!-- sonst niemand 75 KB Schrift.                               -->
+              <g class="bp-label" fill="currentColor" stroke="none" font-size="17" font-weight="500" font-family="'Bricolage Grotesque', sans-serif" text-anchor="middle">
                 <text x="400" y="444">480 cm</text>
                 <text x="792" y="250" transform="rotate(90 792 250)">250 cm</text>
                 <text x="400" y="112">Bad · OG</text>
@@ -564,7 +596,7 @@ import Base from '../layouts/Base.astro';
           <p class="eyebrow eyebrow--light">Ausgewählte Projekte</p>
           <h2 class="display-lg">Echte Arbeit.<br>Echte Ergebnisse.</h2>
           <p class="lead lead--light">
-            Einblicke in unsere Projekte — von der Badsanierung
+            Einblicke in unsere Projekte — von den Fliesenarbeiten
             über den Innenausbau bis zum kompletten Bodenbelag. In der
             Mitte: das große Bad mit Flur, an dem sich am besten zeigt,
             worauf es uns ankommt.
@@ -574,7 +606,7 @@ import Base from '../layouts/Base.astro';
         <div class="gallery-grid">
           <button type="button" class="gallery-item gallery-item--wide" data-reveal aria-label="Bild vergrößern: Helles saniertes Badezimmer">
             <img src="/assets/img/projekte/projekt-1.webp" alt="Helles saniertes Badezimmer" loading="lazy">
-            <span class="gallery-item__cat">Badsanierung</span>
+            <span class="gallery-item__cat">Fliesenarbeiten</span>
           </button>
           <button type="button" class="gallery-item gallery-item--tall" data-reveal aria-label="Bild vergrößern: Sanierte Altbau-Diele mit Doppeltür">
             <img src="/assets/img/projekte/projekt-2.webp" alt="Sanierte Altbau-Diele mit Doppeltür" loading="lazy">
@@ -602,7 +634,7 @@ import Base from '../layouts/Base.astro';
           </button>
           <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Waschbecken mit sauber gezogener Silikonfuge">
             <img src="/assets/img/projekte/bad-waschbecken.webp" alt="Waschbecken mit sauber gezogener Silikonfuge" loading="lazy">
-            <span class="gallery-item__cat">Badsanierung</span>
+            <span class="gallery-item__cat">Fliesenarbeiten</span>
           </button>
           <button type="button" class="gallery-item gallery-item--tall" data-reveal aria-label="Bild vergrößern: Millimetergenauer Vinylboden-Abschluss an der Türzarge">
             <img src="/assets/img/projekte/boden-zarge-praezision.webp" alt="Millimetergenauer Vinylboden-Abschluss an der Türzarge" loading="lazy">
@@ -729,7 +761,7 @@ import Base from '../layouts/Base.astro';
         <div class="faq-list" data-reveal>
           <details class="faq-item">
             <summary>
-              Was kostet eine Badsanierung in Dortmund?
+              Was kosten Fliesenarbeiten in Dortmund?
               <span class="faq-item__icon" aria-hidden="true"></span>
             </summary>
             <div class="faq-item__body">
@@ -742,7 +774,7 @@ import Base from '../layouts/Base.astro';
               <span class="faq-item__icon" aria-hidden="true"></span>
             </summary>
             <div class="faq-item__body">
-              <p>Eine typische Badsanierung dauert etwa zwei bis vier Wochen. Größere Modernisierungen planen wir gemeinsam mit Ihnen — mit verbindlichem Zeitplan, auf den Sie sich verlassen können.</p>
+              <p>Ein durchschnittliches Bad ist in etwa einer Woche gefliest, größere Flächen entsprechend länger. Größere Modernisierungen planen wir gemeinsam mit Ihnen — mit verbindlichem Zeitplan, auf den Sie sich verlassen können.</p>
             </div>
           </details>
           <details class="faq-item">
