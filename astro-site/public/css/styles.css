@@ -10,6 +10,9 @@
   --blue: #1668c4;
   --azure: #2e9be6;
   --azure-soft: #e3f1fc;
+  /* Aufgehellte Variante fuer Links im Fliesstext auf dunklem Grund -   */
+  /* das normale --azure ist dort zu dunkel, um bequem lesbar zu sein.   */
+  --azure-light: #7fc4f0;
   --ink: #0e1b2c;
   --grey: #55677e;
   --grey-light: #8ba0b8;
@@ -90,7 +93,7 @@ a {
 }
 
 .lead--light a {
-  color: #7fc4f0;
+  color: var(--azure-light);
 }
 
 .prose a:hover,
@@ -233,7 +236,12 @@ h4 {
 .btn:focus-visible,
 .nav-cta:focus-visible,
 .config__option:focus-visible,
-.faq-item summary:focus-visible {
+.faq-item summary:focus-visible,
+.video-frame__btn:focus-visible,
+.video-switch__opt:focus-visible,
+.lightbox__close:focus-visible,
+.lightbox__nav:focus-visible,
+.nav-toggle:focus-visible {
   outline: 3px solid var(--azure);
   outline-offset: 3px;
 }
