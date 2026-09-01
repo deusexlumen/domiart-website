@@ -64,36 +64,93 @@
     } else {
       if (lenis) lenis.stop();
 
+      var pl = {
+        seam: preloader.querySelector(".preloader__seam"),
+        emblem: preloader.querySelector(".preloader__emblem"),
+        wort: preloader.querySelector(".preloader__wortmarke"),
+        inner: preloader.querySelector(".preloader__inner"),
+        curtains: preloader.querySelectorAll(".preloader__curtain"),
+      };
+
+      var seamBox = pl.seam.getBoundingClientRect();
+
+      /* Wie weit die Fuge aufreissen muss, um ueber den ganzen Schirm zu  */
+      /* laufen — plus Reserve, damit an den Raendern nichts stehen bleibt. */
+      /* offsetWidth statt der Bounding-Box: die Fuge startet auf scaleX(0), */
+      /* die Bounding-Box waere hier 0 breit.                               */
+      var seamZiel = (window.innerWidth / (pl.seam.offsetWidth || 300)) * 1.15;
+
+      /* Der Vorhang muss GENAU auf der Fuge aufgehen, nicht bei 50%       */
+      /* Hoehe — sonst schneidet die Linie sichtbar daneben. Die Fuge      */
+      /* sitzt tiefer, weil das Emblem darueber Platz braucht.            */
+      var schnittY = Math.round(seamBox.top + seamBox.height / 2);
+      pl.curtains[0].style.height = schnittY + 1 + "px";
+      pl.curtains[1].style.height = window.innerHeight - schnittY + 1 + "px";
+
       gsap
         .timeline({ onComplete: finishPreloader })
-        .to(preloader.querySelector(".preloader__emblem"), {
+
+        /* 1. Die Fuge zieht sich aus der Mitte auf. */
+        .to(pl.seam, {
+          scaleX: 1,
+          duration: 0.3,
+          ease: "power2.out",
+        }, 0)
+
+        /* 2. Das Emblem waechst aus der Fuge nach oben heraus. */
+        .to(pl.emblem, {
           opacity: 1,
-          scale: 1,
+          clipPath: "inset(0% 0 0 0)",
           y: 0,
-          duration: 0.5,
+          duration: 0.44,
           ease: "power3.out",
-          startAt: { opacity: 0, scale: 0.92, y: 10 },
-        })
-        .to(
-          preloader.querySelector(".preloader__wortmarke"),
-          {
-            opacity: 1,
-            clipPath: "inset(0 0% 0 0)",
-            duration: 0.55,
-            ease: "power2.out",
-          },
-          0.25
-        )
-        .to(
-          preloader,
-          { opacity: 0, duration: 0.45, ease: "power2.inOut" },
-          0.95
-        )
-        .to(
-          preloader.querySelector(".preloader__inner"),
-          { scale: 1.04, duration: 0.45, ease: "power2.in" },
-          0.95
-        );
+          startAt: { opacity: 0, clipPath: "inset(100% 0 0 0)", y: 8 },
+        }, 0.14)
+
+        /* 3. Die Wortmarke wischt von links nach. */
+        .to(pl.wort, {
+          opacity: 1,
+          clipPath: "inset(0 0% 0 0)",
+          duration: 0.4,
+          ease: "expo.out",
+        }, 0.36)
+
+        /* 4. Die Fuge faehrt auf volle Breite — sie schneidet den Schirm auf. */
+        .to(pl.seam, {
+          scaleX: seamZiel,
+          duration: 0.26,
+          ease: "power2.in",
+        }, 0.7)
+
+        /* 5. Logo tritt ab — bewusst NUR Emblem und Wortmarke, nicht der  */
+        /*    ganze Block: die Fuge muss sichtbar bleiben, sie ist ja die  */
+        /*    Schnittkante. Beide behalten ihren Platz im Flex-Layout,     */
+        /*    damit die Linie exakt auf der Vorhangkante stehen bleibt.    */
+        .to([pl.emblem, pl.wort], {
+          opacity: 0,
+          y: -6,
+          duration: 0.26,
+          ease: "power2.in",
+        }, 0.76)
+
+        /* 6. Der Vorhang oeffnet sich entlang der Fuge. */
+        .to(pl.curtains[0], {
+          yPercent: -100,
+          duration: 0.46,
+          ease: "power3.inOut",
+        }, 0.84)
+        .to(pl.curtains[1], {
+          yPercent: 100,
+          duration: 0.46,
+          ease: "power3.inOut",
+        }, 0.84)
+
+        /* 7. Zuletzt verglimmt die Fuge. */
+        .to(pl.seam, {
+          opacity: 0,
+          duration: 0.28,
+          ease: "power2.out",
+        }, 1.02);
 
       /* Notbremse: haengt GSAP oder ein Asset, ist nach 1,8s trotzdem Schluss */
       setTimeout(finishPreloader, 1800);

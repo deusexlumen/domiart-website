@@ -2,10 +2,20 @@
 ---
 <!-- ================= Preloader ================= -->
 <!-- Sichtbar nur wenn <html> die Klasse .is-preloading traegt (Inline-  -->
-<!-- Skript in Base.astro setzt sie beim ersten Aufruf pro Session).     -->
+<!-- Skript in Base.astro setzt sie beim ersten Aufruf pro Session und   -->
+<!-- niemals bei prefers-reduced-motion).                                -->
+<!--                                                                     -->
+<!-- Motiv: die Fuge. Eine Linie zieht sich auf, das Emblem waechst      -->
+<!-- daraus hervor, die Wortmarke wischt nach. Zum Schluss faehrt die    -->
+<!-- Linie auf volle Breite und schneidet den Vorhang auf - passend zu   -->
+<!-- einem Betrieb, bei dem es auf die Fuge ankommt.                     -->
 <div class="preloader" data-preloader aria-hidden="true">
+  <div class="preloader__curtain preloader__curtain--top"></div>
+  <div class="preloader__curtain preloader__curtain--bottom"></div>
+
   <div class="preloader__inner">
     <img class="preloader__emblem" src="/assets/img/domiart-emblem-weiss.webp" alt="" width="600" height="213" fetchpriority="high">
+    <span class="preloader__seam"></span>
     <img class="preloader__wortmarke" src="/assets/img/domiart-wortmarke-weiss.webp" alt="" width="700" height="89" fetchpriority="high">
   </div>
 </div>
