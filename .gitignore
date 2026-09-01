@@ -15,3 +15,7 @@ dist/
 .DS_Store
 Thumbs.db
 .astro/
+
+# Lokale Design-Audit-Tools (impeccable) — kein Website-Code
+.claude/skills/
+.impeccable/
