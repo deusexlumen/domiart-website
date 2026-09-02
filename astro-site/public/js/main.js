@@ -944,8 +944,9 @@
   if (!sig) return;
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduced || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
-    return; // CSS-Default zeigt den Endzustand
+  var isMobile = window.matchMedia("(max-width: 767px)").matches;
+  if (reduced || isMobile || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    return; // CSS-Default zeigt den Endzustand — Pin+Crossfade ruckelt auf Mobile
   }
 
   gsap.registerPlugin(ScrollTrigger);
