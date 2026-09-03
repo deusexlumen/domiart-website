@@ -14,15 +14,15 @@
 - Handouts: `.handoff/HANDOUT-ADRIAN.md` (für Adrian, WhatsApp-tauglich), `.handoff/HANDOFF-BUXE.md` (technische Details dieser Session). `.handoff/` ist gitignored.
 
 ## Offen / TODO
-**Blockiert Livegang (nur Adrian kann liefern):**
+**Livegang hängt nur noch am IONOS-DNS (s. unten). Erledigte Blocker:**
 - [x] ~~USt-ID~~ → gelöst: Adrian hat keine USt-IdNr., dafür Steuernummer 315/5192/4533, Finanzamt Dortmund-Hörde (aus seinem Kleinanzeigen-Profil). Impressum umgestellt auf „Steuernummer"-Sektion.
-- [ ] **Porträtfoto von Adrian** für „Über uns". Buxe fragt ihn, ob er ein richtiges Porträt hat (Auto-Foto nur als menschliche Fallback-Option). Aktuell: Arbeitsfoto `ueber-uns.webp`. Dann auch Alt-Text anpassen.
+- [x] ~~Porträtfoto von Adrian~~ → verworfen (Buxe: „scheiß drauf"). Es bleibt beim Arbeitsfoto `ueber-uns.webp`, das schon eingebaut ist.
 
 **Danach / sekundär:**
 - [ ] **IONOS-DNS umstellen** (Anleitung in `.handoff/HANDOUT-ADRIAN.md` §6): A-Record @ → 76.76.21.21, CNAME www → cname.vercel-dns.com. MX/TXT nicht anfassen (E-Mail info@domiart-moresa.de läuft ggf. über IONOS). Alternative: Adrian lädt Buxe als Domainverwaltungs-Benutzer ein. Danach Domain im Vercel-Projekt hinzufügen + Search Console einrichten.
 - [ ] Google-Bewertungen bestätigen → Sektion + `aggregateRating` im JSON-LD (Base.astro)
 - [ ] Erreichbarkeits-Text von Adrian absegnen lassen („Mo–Sa nach Vereinbarung, abends möglich")
 - [ ] Foto-Zuordnung Projekte (Umfrage läuft)
-- [ ] Facebook-Profil-URL verifizieren (Footer: profile.php?id=100090384174074)
+- [x] ~~Facebook-Profil-URL verifizieren~~ → bestätigt über share.google-Link von Adrian: facebook.com/p/Domiart-100090384174074 = dieselbe ID wie im Footer. Seite hat 57 Follower, 0 Bewertungen. ACHTUNG: Auf der FB-Seite steht eine ANDERE Telefonnummer (0176 66312573) als auf der Website (0155 68820575) — Adrian soll die FB-Nummer angleichen.
 - [x] ~~Instagram~~ → entfernt: Adrian hat Insta gelöscht, das gefundene Profil (domiart_a.p) ist privat/nicht seins. Footer-Link + sameAs im JSON-LD raus.
 - [ ] Optional: FAQ-JSON-LD auf Unterseiten, meta keywords entfernen, fonts.css dangling comment
