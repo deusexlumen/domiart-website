@@ -15,7 +15,7 @@
 
 ## Offen / TODO
 **Blockiert Livegang (nur Adrian kann liefern):**
-- [ ] **USt-ID** fürs Impressum (aktuell Fülltext „wird auf Anfrage ergänzt" — impressum.astro:32). Falls Kleinunternehmer § 19 UStG: stattdessen Hinweis eintragen.
+- [x] ~~USt-ID~~ → gelöst: Adrian hat keine USt-IdNr., dafür Steuernummer 315/5192/4533, Finanzamt Dortmund-Hörde (aus seinem Kleinanzeigen-Profil). Impressum umgestellt auf „Steuernummer"-Sektion.
 - [ ] **Porträtfoto von Adrian** für „Über uns". Buxe fragt ihn, ob er ein richtiges Porträt hat (Auto-Foto nur als menschliche Fallback-Option). Aktuell: Arbeitsfoto `ueber-uns.webp`. Dann auch Alt-Text anpassen.
 
 **Danach / sekundär:**
