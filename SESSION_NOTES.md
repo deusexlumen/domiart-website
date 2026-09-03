@@ -19,8 +19,10 @@
 - [ ] **Porträtfoto von Adrian** für „Über uns". Buxe fragt ihn, ob er ein richtiges Porträt hat (Auto-Foto nur als menschliche Fallback-Option). Aktuell: Arbeitsfoto `ueber-uns.webp`. Dann auch Alt-Text anpassen.
 
 **Danach / sekundär:**
+- [ ] **IONOS-DNS umstellen** (Anleitung in `.handoff/HANDOUT-ADRIAN.md` §6): A-Record @ → 76.76.21.21, CNAME www → cname.vercel-dns.com. MX/TXT nicht anfassen (E-Mail info@domiart-moresa.de läuft ggf. über IONOS). Alternative: Adrian lädt Buxe als Domainverwaltungs-Benutzer ein. Danach Domain im Vercel-Projekt hinzufügen + Search Console einrichten.
 - [ ] Google-Bewertungen bestätigen → Sektion + `aggregateRating` im JSON-LD (Base.astro)
 - [ ] Erreichbarkeits-Text von Adrian absegnen lassen („Mo–Sa nach Vereinbarung, abends möglich")
 - [ ] Foto-Zuordnung Projekte (Umfrage läuft)
 - [ ] Facebook-Profil-URL verifizieren (Footer: profile.php?id=100090384174074)
+- [x] ~~Instagram~~ → entfernt: Adrian hat Insta gelöscht, das gefundene Profil (domiart_a.p) ist privat/nicht seins. Footer-Link + sameAs im JSON-LD raus.
 - [ ] Optional: FAQ-JSON-LD auf Unterseiten, meta keywords entfernen, fonts.css dangling comment
