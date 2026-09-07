@@ -19,3 +19,6 @@ Thumbs.db
 # Lokale Design-Audit-Tools (impeccable) — kein Website-Code
 .claude/skills/
 .impeccable/
+
+# Interne Handoff-Notizen
+.handoff/
