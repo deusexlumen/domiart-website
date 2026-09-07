@@ -117,7 +117,7 @@ import Base from '../layouts/Base.astro';
             <img src="/assets/img/hero-main.webp" alt="Fertig renovierter Wohnraum in Dortmund — großformatiger Fliesenboden und Akzentwand aus Backstein-Riemchen" loading="eager" fetchpriority="high">
           </figure>
           <figure class="hero__card hero__card--float" data-reveal>
-            <img src="/assets/img/hero-float.webp" alt="Moderne Dusche mit Duschpaneel in Schieferoptik von DOMIART" loading="eager">
+            <img src="/assets/img/hero-float.webp" alt="Moderne Dusche mit schwarzem Duschpaneel und Schiefermosaik-Boden von DOMIART" loading="eager">
           </figure>
         </div>
       </div>
@@ -182,9 +182,9 @@ import Base from '../layouts/Base.astro';
     <section id="vorher-nachher" class="section">
       <div class="container">
         <div class="ba-wrap">
-          <div class="ba-slider" data-reveal aria-label="Vorher-Nachher-Vergleich: Diele mit Doppeltür">
-            <img src="/assets/img/flur-vorher.webp" alt="Diele im Rohzustand vor der Renovierung — alte Fliesen werden entfernt, Rohbau sichtbar" loading="lazy">
-            <img class="ba-slider__after" src="/assets/img/flur-nachher.webp" alt="Diele nach der Renovierung — neuer Holzdielenboden, frisch gestrichene Wände" loading="lazy">
+          <div class="ba-slider" data-reveal aria-label="Vorher-Nachher-Vergleich: Diele">
+            <img src="/assets/img/flur-vorher.webp" alt="Diele im Rohzustand vor der Renovierung — alte Wandfliesen entfernt, Rohbau sichtbar" loading="lazy">
+            <img class="ba-slider__after" src="/assets/img/flur-nachher.webp" alt="Diele nach der Renovierung — neuer Boden in Holzoptik, frisch gestrichene Wände" loading="lazy">
             <span class="ba-slider__label ba-slider__label--before">Vorher</span>
             <span class="ba-slider__label ba-slider__label--after">Nachher</span>
             <div class="ba-slider__handle" role="slider" tabindex="0" aria-label="Vorher-Nachher-Regler" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
@@ -212,6 +212,25 @@ import Base from '../layouts/Base.astro';
                 Feste Termine, auf die Sie sich verlassen können
               </li>
             </ul>
+          </div>
+        </div>
+
+        <div class="ba-wrap">
+          <div class="ba-copy" data-reveal>
+            <p class="eyebrow">Noch eine Verwandlung</p>
+            <h3>Altbau-Diele mit Doppeltür.</h3>
+            <p class="lead">
+              Derselbe Flur, derselbe Blickwinkel: Die alte Doppeltür mit
+              Glaseinsätzen bleibt als Charakterstück erhalten — alles
+              drumherum ist neu, vom Estrich bis zum letzten Anstrich.
+            </p>
+          </div>
+          <div class="ba-slider" data-reveal aria-label="Vorher-Nachher-Vergleich: Altbau-Diele mit Doppeltür">
+            <img src="/assets/img/diele-vorher.webp" alt="Altbau-Diele während der Renovierung — Rohboden mit Werkzeug, die originale Doppeltür mit Glaseinsätzen noch im Bestand" loading="lazy">
+            <img class="ba-slider__after" src="/assets/img/projekte/projekt-2.webp" alt="Dieselbe Altbau-Diele nach dem Ausbau — aufgearbeitete Doppeltür, neuer Eichenboden, frisch gestrichene Wände" loading="lazy">
+            <span class="ba-slider__label ba-slider__label--before">Vorher</span>
+            <span class="ba-slider__label ba-slider__label--after">Nachher</span>
+            <div class="ba-slider__handle" role="slider" tabindex="0" aria-label="Vorher-Nachher-Regler" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
           </div>
         </div>
       </div>
@@ -428,7 +447,7 @@ import Base from '../layouts/Base.astro';
 
         <div class="signature__stage">
           <div class="signature__frame">
-            <img class="signature__photo signature__photo--bau" src="/assets/img/signatur-bau.webp" alt="Badezimmer während der Sanierung — geflieste Wände im Rohbau" loading="lazy">
+            <img class="signature__photo signature__photo--bau" src="/assets/img/signatur-bau.webp" alt="Dasselbe Bad während der Sanierung — WC-Vorwand im Rohbau, dunkler Fliesenboden bereits verlegt" loading="lazy">
             <img class="signature__photo signature__photo--fertig" src="/assets/img/nachher.webp" alt="Das fertige Bad — großformatige weiße Wandfliesen und dunkler Bodenbelag" loading="lazy">
 
             <svg class="signature__blueprint" viewBox="0 0 800 500" fill="none" aria-hidden="true">
@@ -604,24 +623,24 @@ import Base from '../layouts/Base.astro';
         </div>
 
         <div class="gallery-grid">
-          <button type="button" class="gallery-item gallery-item--wide" data-reveal aria-label="Bild vergrößern: Helles saniertes Badezimmer">
-            <img src="/assets/img/projekte/projekt-1.webp" alt="Helles saniertes Badezimmer" loading="lazy">
+          <button type="button" class="gallery-item gallery-item--wide" data-reveal aria-label="Bild vergrößern: Helles Bad während der Sanierung">
+            <img src="/assets/img/projekte/projekt-1.webp" alt="Helles Bad während der Sanierung — neue großformatige Wandfliesen, WC-Vorwand noch offen" loading="lazy">
             <span class="gallery-item__cat">Fliesenarbeiten</span>
           </button>
           <button type="button" class="gallery-item gallery-item--tall" data-reveal aria-label="Bild vergrößern: Sanierte Altbau-Diele mit Doppeltür">
             <img src="/assets/img/projekte/projekt-2.webp" alt="Sanierte Altbau-Diele mit Doppeltür" loading="lazy">
             <span class="gallery-item__cat">Innenausbau</span>
           </button>
-          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Das große Bad — geflieste Dusch- und WC-Nische am Fenster">
-            <img src="/assets/img/projekte/projekt-3.webp" alt="Das große Bad: Dusch- und WC-Nische in grauen Großformatfliesen, sauber ums Fenster geführt" loading="lazy">
+          <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Das große Bad — geflieste WC-Nische">
+            <img src="/assets/img/projekte/projekt-3.webp" alt="Das große Bad: WC-Nische in grauen Großformatfliesen" loading="lazy">
             <span class="gallery-item__cat">Das große Bad</span>
           </button>
           <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Das große Bad — Fugenbild und gerade eingeputzte Abschlussschiene">
             <img src="/assets/img/projekte/projekt-4.webp" alt="Das große Bad im Detail: durchlaufendes Fugenbild und die schnurgerade eingeputzte Abschlussschiene über den Wandfliesen" loading="lazy">
             <span class="gallery-item__cat">Das große Bad</span>
           </button>
-          <button type="button" class="gallery-item gallery-item--tall" data-reveal aria-label="Bild vergrößern: Flur mit neu verlegtem Vinyl-Designboden">
-            <img src="/assets/img/projekte/projekt-5.webp" alt="Flur mit neu verlegtem Vinyl-Designboden" loading="lazy">
+          <button type="button" class="gallery-item gallery-item--tall" data-reveal aria-label="Bild vergrößern: Flur mit neu verlegtem Boden in Holzoptik">
+            <img src="/assets/img/projekte/projekt-5.webp" alt="Flur mit neu verlegtem Boden in Holzoptik" loading="lazy">
             <span class="gallery-item__cat">Bodenbeläge</span>
           </button>
           <button type="button" class="gallery-item" data-reveal aria-label="Bild vergrößern: Der geflieste Aufgang im Flur, absolut eben verlegt">
