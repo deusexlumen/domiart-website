@@ -12,6 +12,9 @@ interface Props {
   robots?: string;
   ogTitle?: string;
   ogDescription?: string;
+  /* Seiten ohne Animationen (Impressum, Datenschutz) koennen den      */
+  /* Vendor-Stack (Lenis, GSAP, ScrollTrigger, SplitText) abklemmen.   */
+  vendorScripts?: boolean;
   /* Seitenspezifisches Social-Preview (1200x630, bewusst JPEG wegen  */
   /* Crawler-Kompatibilitaet). Ohne Angabe das generische Markenbild. */
   ogImage?: string;
@@ -25,6 +28,7 @@ const {
   ogTitle = title,
   ogDescription = description,
   ogImage = '/assets/img/og-image.jpg',
+  vendorScripts = true,
 } = Astro.props;
 
 const ogImageUrl = new URL(ogImage, 'https://www.domiart-moresa.de/').href;
@@ -56,6 +60,11 @@ const ogImageUrl = new URL(ogImage, 'https://www.domiart-moresa.de/').href;
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 
+  <!-- Font-Preload: kritische Schnitte fuer H1 (LCP) und Fliesstext, -->
+  <!-- damit der erste Paint nicht auf System-Fonts zurueckfaellt.    -->
+  <link rel="preload" href="/assets/fonts/BricolageGrotesque-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/Inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+
   <!-- Fonts (lokal, DSGVO-konform) -->
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
 
@@ -80,6 +89,11 @@ const ogImageUrl = new URL(ogImage, 'https://www.domiart-moresa.de/').href;
       "addressCountry": "DE"
     },
     "areaServed": ["Dortmund", "Ruhrgebiet", "Nordrhein-Westfalen"],
+    "image": "https://www.domiart-moresa.de/assets/img/og-image.jpg",
+    "sameAs": [
+      "https://www.instagram.com/domiart_a.p/",
+      "https://www.facebook.com/profile.php?id=100090384174074"
+    ],
     "knowsAbout": [
       "Modernisierung", "Renovierung", "Sanierung", "Fliesenarbeiten", "Tapezierarbeiten",
       "Trockenbau", "Malerarbeiten", "Verputzarbeiten", "Innenausbau",
@@ -125,11 +139,16 @@ const ogImageUrl = new URL(ogImage, 'https://www.domiart-moresa.de/').href;
 
   <Lightbox />
 
-  <!-- Scripts (lokal) -->
-  <script is:inline src="/assets/vendor/lenis.min.js"></script>
-  <script is:inline src="/assets/vendor/gsap.min.js"></script>
-  <script is:inline src="/assets/vendor/ScrollTrigger.min.js"></script>
-  <script is:inline src="/assets/vendor/SplitText.min.js"></script>
+  <!-- Scripts (lokal). Vendor-Stack nur auf Seiten mit Animationen; -->
+  <!-- main.js faengt das Fehlen ueber hasGsap / typeof Lenis ab.    -->
+  {vendorScripts && (
+    <>
+      <script is:inline src="/assets/vendor/lenis.min.js"></script>
+      <script is:inline src="/assets/vendor/gsap.min.js"></script>
+      <script is:inline src="/assets/vendor/ScrollTrigger.min.js"></script>
+      <script is:inline src="/assets/vendor/SplitText.min.js"></script>
+    </>
+  )}
   <script is:inline src="/js/main.js"></script>
 </body>
 </html>

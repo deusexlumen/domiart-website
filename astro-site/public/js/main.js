@@ -37,8 +37,8 @@
 
   /* ---------- Preloader: Logo-Reveal ---------- */
   /* Laeuft nur beim ersten Aufruf pro Session (Klasse wird im Inline-   */
-  /* Skript in Base.astro gesetzt) und ist hart auf ~1,2s gedeckelt —    */
-  /* er wartet bewusst NICHT auf echte Ladefortschritte.                 */
+  /* Skript in Base.astro gesetzt). Ruhige ~2 s Inszenierung mit Halte-  */
+  /* phase — er wartet bewusst NICHT auf echte Ladefortschritte.         */
   var root = document.documentElement;
 
   if (root.classList.contains("is-preloading")) {
@@ -70,6 +70,9 @@
         wort: preloader.querySelector(".preloader__wortmarke"),
         inner: preloader.querySelector(".preloader__inner"),
         curtains: preloader.querySelectorAll(".preloader__curtain"),
+        sheen: preloader.querySelector(".preloader__sheen"),
+        vignette: preloader.querySelector(".preloader__vignette"),
+        grain: preloader.querySelector(".preloader__grain"),
       };
 
       var seamBox = pl.seam.getBoundingClientRect();
@@ -90,10 +93,14 @@
       gsap
         .timeline({ onComplete: finishPreloader })
 
+        /* 0. Atmosphaere (Vignette + Filmkorn) steht von Anfang an. */
+        .set(pl.vignette, { opacity: 1 }, 0)
+        .set(pl.grain, { opacity: 0.05 }, 0)
+
         /* 1. Die Fuge zieht sich aus der Mitte auf. */
         .to(pl.seam, {
           scaleX: 1,
-          duration: 0.3,
+          duration: 0.4,
           ease: "power2.out",
         }, 0)
 
@@ -102,25 +109,32 @@
           opacity: 1,
           clipPath: "inset(0% 0 0 0)",
           y: 0,
-          duration: 0.44,
+          duration: 0.55,
           ease: "power3.out",
           startAt: { opacity: 0, clipPath: "inset(100% 0 0 0)", y: 8 },
-        }, 0.14)
+        }, 0.2)
 
         /* 3. Die Wortmarke wischt von links nach. */
         .to(pl.wort, {
           opacity: 1,
           clipPath: "inset(0 0% 0 0)",
-          duration: 0.4,
+          duration: 0.5,
           ease: "expo.out",
-        }, 0.36)
+        }, 0.5)
+
+        /* 3b. Streiflicht wandert einmal ueber das Chrom. Danach bleibt */
+        /*     das Logo in Ruhe stehen — die Halte-Phase zum Wirken.     */
+        .fromTo(pl.sheen,
+          { xPercent: -108, opacity: 1 },
+          { xPercent: 108, duration: 0.5, ease: "power2.inOut" },
+        0.7)
 
         /* 4. Die Fuge faehrt auf volle Breite — sie schneidet den Schirm auf. */
         .to(pl.seam, {
           scaleX: seamZiel,
-          duration: 0.26,
+          duration: 0.32,
           ease: "power2.in",
-        }, 0.7)
+        }, 1.18)
 
         /* 5. Logo tritt ab — bewusst NUR Emblem und Wortmarke, nicht der  */
         /*    ganze Block: die Fuge muss sichtbar bleiben, sie ist ja die  */
@@ -129,31 +143,39 @@
         .to([pl.emblem, pl.wort], {
           opacity: 0,
           y: -6,
-          duration: 0.26,
+          duration: 0.3,
           ease: "power2.in",
-        }, 0.76)
+        }, 1.28)
 
         /* 6. Der Vorhang oeffnet sich entlang der Fuge. */
         .to(pl.curtains[0], {
           yPercent: -100,
-          duration: 0.46,
+          duration: 0.62,
           ease: "power3.inOut",
-        }, 0.84)
+        }, 1.42)
         .to(pl.curtains[1], {
           yPercent: 100,
-          duration: 0.46,
+          duration: 0.62,
           ease: "power3.inOut",
-        }, 0.84)
+        }, 1.42)
+
+        /* 6b. Atmosphaere und Streiflicht verglimmen mit dem Vorhang. */
+        .to([pl.vignette, pl.grain], {
+          opacity: 0,
+          duration: 0.4,
+          ease: "power2.inOut",
+        }, 1.42)
+        .set(pl.sheen, { opacity: 0 }, 1.24)
 
         /* 7. Zuletzt verglimmt die Fuge. */
         .to(pl.seam, {
           opacity: 0,
-          duration: 0.28,
+          duration: 0.34,
           ease: "power2.out",
-        }, 1.02);
+        }, 1.66);
 
-      /* Notbremse: haengt GSAP oder ein Asset, ist nach 1,8s trotzdem Schluss */
-      setTimeout(finishPreloader, 1800);
+      /* Notbremse: haengt GSAP oder ein Asset, ist nach 2,6s trotzdem Schluss */
+      setTimeout(finishPreloader, 2600);
     }
   }
 
