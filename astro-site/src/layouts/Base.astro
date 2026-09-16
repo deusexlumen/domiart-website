@@ -8,7 +8,8 @@ import Preloader from '../components/Preloader.astro';
 interface Props {
   title: string;
   description: string;
-  canonical: string;
+  /* Optional nur fuer die 404-Seite: ohne Angabe kein Canonical/og:url. */
+  canonical?: string;
   robots?: string;
   ogTitle?: string;
   ogDescription?: string;
@@ -40,17 +41,16 @@ const ogImageUrl = new URL(ogImage, 'https://www.domiart-moresa.de/').href;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content={description}>
-  <meta name="keywords" content="Modernisierung Dortmund, Renovierung Dortmund, Sanierung Dortmund, Trockenbau, Malerarbeiten, Verputzarbeiten, Innenausbau, Entkernung, Entrümpelung, Fliesenarbeiten, Tapezierarbeiten, Generalunternehmen Dortmund">
   <meta name="author" content="DOMIART — Adrian Polaczek">
   <meta name="robots" content={robots}>
-  <link rel="canonical" href={canonical}>
+  {canonical && <link rel="canonical" href={canonical}>}
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
   <meta property="og:title" content={ogTitle}>
   <meta property="og:description" content={ogDescription}>
-  <meta property="og:url" content={canonical}>
+  {canonical && <meta property="og:url" content={canonical}>}
   <meta property="og:image" content={ogImageUrl}>
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
