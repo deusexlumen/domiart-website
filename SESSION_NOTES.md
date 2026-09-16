@@ -16,7 +16,7 @@
 ## Offen / TODO
 - [ ] **Dezember 2026 bis spätestens Februar 2027:** Kündigungen vorbereiten (Baukasten + Abmahnschutz zum 16.03.2027, Domain sichern als Eigenvertrag). Zusammen mit Adrian durchklicken.
 - [ ] Adrian fragen: nutzt er info@domiart-moresa.de? Wenn nein → Mail-Vertrag ebenfalls kündigen.
-- [ ] Google Business Profil beanspruchen (Haupt-Hebel, wichtiger als Website) + Bewertungen sammeln → dann Sektion + aggregateRating im JSON-LD.
+- [x] ~~Google Business Profil~~ → erledigt (Adrian hat es selbst beansprucht). Offen bleibt: Bewertungen sammeln → dann Sektion + aggregateRating im JSON-LD nachrüsten.
 - [ ] Erreichbarkeits-Text absegnen lassen („Mo–Sa nach Vereinbarung, abends möglich")
 - [ ] Foto-Zuordnung Projekte
 - [ ] FB-Seite: andere Telefonnummer (0176 66312573) angleichen an Website (0155 68820575)
