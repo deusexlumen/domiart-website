@@ -104,18 +104,23 @@ const ogImageUrl = new URL(ogImage, 'https://www.domiart-moresa.de/').href;
 
   <slot name="head" />
 
-  <!-- Preloader-Entscheidung vor dem ersten Paint: nur beim ersten -->
-  <!-- Seitenaufruf pro Session und nur bei voller Motion.          -->
+  <!-- Preloader-Entscheidung vor dem ersten Paint: nur beim Einstieg   -->
+  <!-- von aussen (nicht bei Navigation innerhalb der Seite) und nur bei -->
+  <!-- voller Motion. Bewusst ohne sessionStorage: Speichern auf dem     -->
+  <!-- Endgeraet waere nach § 25 TDDDG einwilligungspflichtig.           -->
   <script is:inline>
     (function () {
       try {
-        var seen = window.sessionStorage.getItem("domiart-preloaded");
+        var internal = false;
+        if (document.referrer) {
+          internal = new URL(document.referrer).origin === window.location.origin;
+        }
         var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (!seen && !reduce) {
+        if (!internal && !reduce) {
           document.documentElement.classList.add("is-preloading");
         }
       } catch (e) {
-        /* sessionStorage blockiert (Private Mode) — dann eben kein Preloader */
+        /* Referrer nicht auswertbar — dann eben kein Preloader */
       }
     })();
   </script>

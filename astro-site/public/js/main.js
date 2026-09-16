@@ -36,8 +36,8 @@
   }
 
   /* ---------- Preloader: Logo-Reveal ---------- */
-  /* Laeuft nur beim ersten Aufruf pro Session (Klasse wird im Inline-   */
-  /* Skript in Base.astro gesetzt). Ruhige ~2 s Inszenierung mit Halte-  */
+  /* Laeuft nur beim Einstieg von aussen (Klasse wird im Inline-Skript   */
+  /* in Base.astro gesetzt). Ruhige ~2 s Inszenierung mit Halte-         */
   /* phase — er wartet bewusst NICHT auf echte Ladefortschritte.         */
   var root = document.documentElement;
 
@@ -50,11 +50,6 @@
       preloadDone = true;
       root.classList.remove("is-preloading");
       root.classList.add("preloader-done");
-      try {
-        window.sessionStorage.setItem("domiart-preloaded", "1");
-      } catch (e) {
-        /* Private Mode — dann laeuft er beim naechsten Aufruf halt erneut */
-      }
       if (lenis) lenis.start();
       if (hasGsap) ScrollTrigger.refresh();
     };
