@@ -1,9 +1,28 @@
 # DOMIART Firmenhomepage — Session Notes
 
 ## Status
-- Website feature-fertig, letzter Commit `61be130` auf `main` (gepusht, 2026-09-07).
-- Deploy: Vercel (domiart-website.vercel.app). Ziel-Domain domiart-moresa.de = noch IONOS-Parkseite.
-- Livegang blockiert durch 2 Adrian-Punkte (s. TODO).
+- **LIVE seit 16.09.2026:** https://www.domiart-moresa.de (Vercel, Hobby). Apex → www per 308-Redirect. Alle 6 Seiten, robots.txt, sitemap-index geprüft.
+- Letzter Commit `18a5dbc` auf `main` (Datenschutz wieder Vercel-Text).
+- DNS bei IONOS: A @ → 76.76.21.21, CNAME www → 1cf602fced6031a5.vercel-dns-017.com (Vercel-Empfehlung statt Legacy cname.vercel-dns.com). **Mail-DNS (MX/SPF/DKIM/DMARC) unverändert.**
+- Entscheidung 16.09: Produktiv = Vercel (kostenlos). IONOS-Pläne (Webspace/Plus) verworfen — Buxe: sinnlos teuer für 5-seitige Static-Site.
+
+## IONOS-Vertragslage (wichtig für März 2027)
+- Vertrag 111180719 **MyWebsite Now Plus**: 1 €/Monat Promo, Verlängerung **16.03.2027** — danach ~13 €/Monat. Vorher kündigen!
+- **domiart-moresa.de ist Zusatz-Domain IN diesem Vertrag** (Verlängerung 29.03.2027) — beim Kündigen Domain als eigenen Vertrag behalten (~0,42 €/Monat), sonst geht sie verloren.
+- Vertrag 111180721 Website Abmahnschutz: ebenfalls bis 16.03.2027, mit kündigen.
+- Rechnungshistorie bestätigt: 1 €/Monat seit März 2026.
+- IONOS-Hinweis: "Default Site"-Service wurde beim DNS-Umbau automatisch deaktiviert (Konflikt-Auflösung) — Baukasten-Bindung der Domain damit gelöst.
+
+## Offen / TODO
+- [ ] **Dezember 2026 bis spätestens Februar 2027:** Kündigungen vorbereiten (Baukasten + Abmahnschutz zum 16.03.2027, Domain sichern als Eigenvertrag). Zusammen mit Adrian durchklicken.
+- [ ] Adrian fragen: nutzt er info@domiart-moresa.de? Wenn nein → Mail-Vertrag ebenfalls kündigen.
+- [ ] Google Business Profil beanspruchen (Haupt-Hebel, wichtiger als Website) + Bewertungen sammeln → dann Sektion + aggregateRating im JSON-LD.
+- [ ] Erreichbarkeits-Text absegnen lassen („Mo–Sa nach Vereinbarung, abends möglich")
+- [ ] Foto-Zuordnung Projekte
+- [ ] FB-Seite: andere Telefonnummer (0176 66312573) angleichen an Website (0155 68820575)
+- [ ] Adrian soll IONOS-Passwort ändern (Zugangsdaten wurden weitergegeben)
+- [ ] Search Console einrichten (Domain-Property)
+- [ ] Optional: FAQ-JSON-LD auf Unterseiten, meta keywords entfernen, fonts.css dangling comment
 
 ## Entscheidungen & Erkenntnisse
 - **2026-09-07 — Logo ist EINE Einheit:** Header nutzt komplettes Farb-Wappen (`domiart-logo-header.webp`), kein Split mehr. Split (Emblem+Wortmarke nebeneinander) war Relikt der alten Weiß-Silhouetten. Quelle aller Logo-Derivate: `ChatGPT Image 7. Sept. 2026, 08_43_47.png` in Downloads, Schnitt Emblem/Wortmarke bei y=695.
@@ -13,16 +32,3 @@
 - **2026-09-07 — Google Business Profil ist der Haupt-Hebel** (wichtiger als die Website), Profil aktuell unbeansprucht. Steht so auch im Adrian-Handout.
 - Handouts: `.handoff/HANDOUT-ADRIAN.md` (für Adrian, WhatsApp-tauglich), `.handoff/HANDOFF-BUXE.md` (technische Details dieser Session). `.handoff/` ist gitignored.
 
-## Offen / TODO
-**Livegang hängt nur noch am IONOS-DNS (s. unten). Erledigte Blocker:**
-- [x] ~~USt-ID~~ → gelöst: Adrian hat keine USt-IdNr., dafür Steuernummer 315/5192/4533, Finanzamt Dortmund-Hörde (aus seinem Kleinanzeigen-Profil). Impressum umgestellt auf „Steuernummer"-Sektion.
-- [x] ~~Porträtfoto von Adrian~~ → verworfen (Buxe: „scheiß drauf"). Es bleibt beim Arbeitsfoto `ueber-uns.webp`, das schon eingebaut ist.
-
-**Danach / sekundär:**
-- [ ] **IONOS-DNS umstellen** (Anleitung in `.handoff/HANDOUT-ADRIAN.md` §6): A-Record @ → 76.76.21.21, CNAME www → cname.vercel-dns.com. MX/TXT nicht anfassen (E-Mail info@domiart-moresa.de läuft ggf. über IONOS). Alternative: Adrian lädt Buxe als Domainverwaltungs-Benutzer ein. Danach Domain im Vercel-Projekt hinzufügen + Search Console einrichten.
-- [ ] Google-Bewertungen bestätigen → Sektion + `aggregateRating` im JSON-LD (Base.astro)
-- [ ] Erreichbarkeits-Text von Adrian absegnen lassen („Mo–Sa nach Vereinbarung, abends möglich")
-- [ ] Foto-Zuordnung Projekte (Umfrage läuft)
-- [x] ~~Facebook-Profil-URL verifizieren~~ → bestätigt über share.google-Link von Adrian: facebook.com/p/Domiart-100090384174074 = dieselbe ID wie im Footer. Seite hat 57 Follower, 0 Bewertungen. ACHTUNG: Auf der FB-Seite steht eine ANDERE Telefonnummer (0176 66312573) als auf der Website (0155 68820575) — Adrian soll die FB-Nummer angleichen.
-- [x] ~~Instagram~~ → entfernt: Adrian hat Insta gelöscht, das gefundene Profil (domiart_a.p) ist privat/nicht seins. Footer-Link + sameAs im JSON-LD raus.
-- [ ] Optional: FAQ-JSON-LD auf Unterseiten, meta keywords entfernen, fonts.css dangling comment
