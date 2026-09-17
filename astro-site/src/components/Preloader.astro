@@ -8,19 +8,17 @@
 <!-- Motiv: die Fuge. Eine Linie zieht sich auf, das Emblem waechst      -->
 <!-- daraus hervor, die Wortmarke wischt nach. Streiflicht wandert       -->
 <!-- ueber das Chrom, Filmkorn und Vignette geben dem Raum Tiefe. Das    -->
-<!-- Logo bekommt eine kurze Halte-Phase zum Wirken, dann faehrt die     -->
-<!-- Linie auf volle Breite und schneidet den Vorhang auf — passend zu   -->
-<!-- einem Betrieb, bei dem es auf die Fuge ankommt. ~1,3 s, Kappe 1,5 s.-->
-<!-- Besucher aus der organischen Suche bekommen den Vorhang gar nicht   -->
-<!-- erst (siehe Inline-Skript in Base.astro) — der LCP zaehlt.          -->
+<!-- Logo bekommt eine Halte-Phase zum Wirken, dann faehrt die Linie     -->
+<!-- auf volle Breite und schneidet den Vorhang auf - passend zu einem   -->
+<!-- Betrieb, bei dem es auf die Fuge ankommt. ~2 s, harte Kappe 2,6 s.  -->
 <div class="preloader" data-preloader aria-hidden="true">
   <div class="preloader__curtain preloader__curtain--top"></div>
   <div class="preloader__curtain preloader__curtain--bottom"></div>
 
   <div class="preloader__inner">
-    <img class="preloader__emblem" src="/assets/img/domiart-emblem-weiss.webp" alt="" width="1070" height="480" fetchpriority="low">
+    <img class="preloader__emblem" src="/assets/img/domiart-emblem-weiss.webp" alt="" width="1070" height="480" fetchpriority="high">
     <span class="preloader__seam"></span>
-    <img class="preloader__wortmarke" src="/assets/img/domiart-wortmarke-weiss.webp" alt="" width="944" height="200" fetchpriority="low">
+    <img class="preloader__wortmarke" src="/assets/img/domiart-wortmarke-weiss.webp" alt="" width="944" height="200" fetchpriority="high">
     <span class="preloader__sheen"></span>
   </div>
 
