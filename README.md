@@ -16,7 +16,7 @@
 | **Live-Seite** | [www.domiart-moresa.de](https://www.domiart-moresa.de) |
 | **Domain** | Beim Kunden erworben, DNS/Weiterleitung über **IONOS** |
 | **Hosting** | **Vercel** (Auto-Deploy aus `main`) — dieses Repo ist der finale Stand |
-| **Staging/Demo** | [domiart-website.vercel.app](https://domiart-website.vercel.app) |
+| **Demo-URL** | [domiart-website.vercel.app](https://domiart-website.vercel.app) leitet per 308-Redirect auf die Live-Seite um (kein Duplicate Content für Google) |
 
 ## ✨ Was ist das?
 
