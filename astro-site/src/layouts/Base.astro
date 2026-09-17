@@ -105,18 +105,23 @@ const ogImageUrl = new URL(ogImage, 'https://www.domiart-moresa.de/').href;
   <slot name="head" />
 
   <!-- Preloader-Entscheidung vor dem ersten Paint: nur beim Einstieg   -->
-  <!-- von aussen (nicht bei Navigation innerhalb der Seite) und nur bei -->
-  <!-- voller Motion. Bewusst ohne sessionStorage: Speichern auf dem     -->
-  <!-- Endgeraet waere nach § 25 TDDDG einwilligungspflichtig.           -->
+  <!-- von aussen (nicht bei Navigation innerhalb der Seite), nur bei   -->
+  <!-- voller Motion und nicht fuer Besucher aus der organischen Suche  -->
+  <!-- (der Vorhang wuerde sonst den LCP verzoegern). Bewusst ohne      -->
+  <!-- sessionStorage: Speichern auf dem Endgeraet waere nach § 25      -->
+  <!-- TDDDG einwilligungspflichtig.                                     -->
   <script is:inline>
     (function () {
       try {
         var internal = false;
+        var fromSearch = false;
         if (document.referrer) {
-          internal = new URL(document.referrer).origin === window.location.origin;
+          var ref = new URL(document.referrer);
+          internal = ref.origin === window.location.origin;
+          fromSearch = /(^|\.)((google\.(com|de|[a-z]{2,})|bing\.com|duckduckgo\.com|startpage\.com|ecosia\.org|qwant\.com|yahoo\.com))$/.test(ref.hostname);
         }
         var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (!internal && !reduce) {
+        if (!internal && !reduce && !fromSearch) {
           document.documentElement.classList.add("is-preloading");
         }
       } catch (e) {

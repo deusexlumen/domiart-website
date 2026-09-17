@@ -37,8 +37,8 @@
 
   /* ---------- Preloader: Logo-Reveal ---------- */
   /* Laeuft nur beim Einstieg von aussen (Klasse wird im Inline-Skript   */
-  /* in Base.astro gesetzt). Ruhige ~2 s Inszenierung mit Halte-         */
-  /* phase — er wartet bewusst NICHT auf echte Ladefortschritte.         */
+  /* in Base.astro gesetzt). Kompakte ~1,3 s Inszenierung mit kurzer     */
+  /* Halte-Phase — er wartet bewusst NICHT auf echte Ladefortschritte.   */
   var root = document.documentElement;
 
   if (root.classList.contains("is-preloading")) {
@@ -95,7 +95,7 @@
         /* 1. Die Fuge zieht sich aus der Mitte auf. */
         .to(pl.seam, {
           scaleX: 1,
-          duration: 0.4,
+          duration: 0.26,
           ease: "power2.out",
         }, 0)
 
@@ -104,32 +104,32 @@
           opacity: 1,
           clipPath: "inset(0% 0 0 0)",
           y: 0,
-          duration: 0.55,
+          duration: 0.36,
           ease: "power3.out",
           startAt: { opacity: 0, clipPath: "inset(100% 0 0 0)", y: 8 },
-        }, 0.2)
+        }, 0.12)
 
         /* 3. Die Wortmarke wischt von links nach. */
         .to(pl.wort, {
           opacity: 1,
           clipPath: "inset(0 0% 0 0)",
-          duration: 0.5,
+          duration: 0.3,
           ease: "expo.out",
-        }, 0.5)
+        }, 0.28)
 
         /* 3b. Streiflicht wandert einmal ueber das Chrom. Danach bleibt */
         /*     das Logo in Ruhe stehen — die Halte-Phase zum Wirken.     */
         .fromTo(pl.sheen,
           { xPercent: -108, opacity: 1 },
-          { xPercent: 108, duration: 0.5, ease: "power2.inOut" },
-        0.7)
+          { xPercent: 108, duration: 0.28, ease: "power2.inOut" },
+        0.4)
 
         /* 4. Die Fuge faehrt auf volle Breite — sie schneidet den Schirm auf. */
         .to(pl.seam, {
           scaleX: seamZiel,
-          duration: 0.32,
+          duration: 0.22,
           ease: "power2.in",
-        }, 1.18)
+        }, 0.68)
 
         /* 5. Logo tritt ab — bewusst NUR Emblem und Wortmarke, nicht der  */
         /*    ganze Block: die Fuge muss sichtbar bleiben, sie ist ja die  */
@@ -138,39 +138,39 @@
         .to([pl.emblem, pl.wort], {
           opacity: 0,
           y: -6,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.in",
-        }, 1.28)
+        }, 0.76)
 
         /* 6. Der Vorhang oeffnet sich entlang der Fuge. */
         .to(pl.curtains[0], {
           yPercent: -100,
-          duration: 0.62,
+          duration: 0.42,
           ease: "power3.inOut",
-        }, 1.42)
+        }, 0.86)
         .to(pl.curtains[1], {
           yPercent: 100,
-          duration: 0.62,
+          duration: 0.42,
           ease: "power3.inOut",
-        }, 1.42)
+        }, 0.86)
 
         /* 6b. Atmosphaere und Streiflicht verglimmen mit dem Vorhang. */
         .to([pl.vignette, pl.grain], {
           opacity: 0,
-          duration: 0.4,
+          duration: 0.28,
           ease: "power2.inOut",
-        }, 1.42)
-        .set(pl.sheen, { opacity: 0 }, 1.24)
+        }, 0.86)
+        .set(pl.sheen, { opacity: 0 }, 0.74)
 
         /* 7. Zuletzt verglimmt die Fuge. */
         .to(pl.seam, {
           opacity: 0,
-          duration: 0.34,
+          duration: 0.22,
           ease: "power2.out",
-        }, 1.66);
+        }, 1.06);
 
-      /* Notbremse: haengt GSAP oder ein Asset, ist nach 2,6s trotzdem Schluss */
-      setTimeout(finishPreloader, 2600);
+      /* Notbremse: haengt GSAP oder ein Asset, ist nach 1,5s trotzdem Schluss */
+      setTimeout(finishPreloader, 1500);
     }
   }
 
