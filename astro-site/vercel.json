@@ -3,6 +3,15 @@
   "headers": [
     {
       "source": "/:path*",
+      "headers": [
+        {
+          "key": "X-Test-Config",
+          "value": "vercel-json-read"
+        }
+      ]
+    },
+    {
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
