@@ -72,5 +72,6 @@ Es gibt aktuell **kein** Test-Framework, keinen Linter und kein Type-Check-Skrip
 
 ## 👨‍💻 Credits
 
-Konzept, Design & Umsetzung: **[deusexlumen](https://github.com/deusexlumen)** 🚀
+Konzept, Design & Umsetzung: **[deusexlumen](https://github.com/deusexlumen)** · [deusexlumen@airmail.cc](mailto:deusexlumen@airmail.cc) 🚀
+
 *Individuelle Websites für Handwerk & Mittelstand — performant, SEO-stark, DSGVO-sicher.*
