@@ -2,11 +2,21 @@
 
 > Marketing-Website für **DOMIART**, Bauunternehmung in Dortmund — schnell, statisch gebaut und gezielt auf lokales SEO optimiert.
 
-[![Live-Demo](https://img.shields.io/badge/Demo-domiart--website.vercel.app-8A2BE2?style=for-the-badge&logo=vercel)](https://domiart-website.vercel.app)
+[![Live](https://img.shields.io/badge/LIVE-www.domiart--moresa.de-8A2BE2?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.domiart-moresa.de)
 [![Astro](https://img.shields.io/badge/Astro-5.0-BC52EE?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
 [![pnpm](https://img.shields.io/badge/pnpm-verwaltet-F69220?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io)
+[![Vercel](https://img.shields.io/badge/Hosted-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 
 ---
+
+## 🌐 Live-Betrieb
+
+| | |
+|---|---|
+| **Live-Seite** | [www.domiart-moresa.de](https://www.domiart-moresa.de) |
+| **Domain** | Beim Kunden erworben, DNS/Weiterleitung über **IONOS** |
+| **Hosting** | **Vercel** (Auto-Deploy aus `main`) — dieses Repo ist der finale Stand |
+| **Staging/Demo** | [domiart-website.vercel.app](https://domiart-website.vercel.app) |
 
 ## ✨ Was ist das?
 
@@ -16,7 +26,7 @@ Generalunternehmung für Modernisierung, Renovierung & Sanierung — von der **B
 Die Seite ist ein **vollständig statischer Astro-Site** (kein Server-Runtime, kein Framework-JS) mit Fokus auf:
 
 - ⚡ **Performance** – minimaler JS-Fußabdruck, selbst gehostete Fonts (DSGVO-konform)
-- 🔍 **Lokales SEO** – eigene Landingpages pro Gewerk für Dortmund (`/badsanierung-dortmund`, `/trockenbau-dortmund`, …)
+- 🔍 **Lokales SEO** – eigene Landingpages pro Gewerk für Dortmund (`/badsanierung-dortmund`, `/trockenbau-dortmund`, …), Canonical/OG/Sitemap alle auf `www.domiart-moresa.de`
 - 📱 **Conversion** – Sticky-CTA, WhatsApp-Deep-Link, Anfrageformular
 - ♿ **Sauberes Markup** – plain Astro + Vanilla JS, kein React/Vue
 
@@ -29,6 +39,7 @@ Die Seite ist ein **vollständig statischer Astro-Site** (kein Server-Runtime, k
 | Animationen | GSAP / ScrollTrigger / Lenis / SplitText (als Vendor-Dateien in `public/`) |
 | Sitemap | `@astrojs/sitemap` (automatisch beim Build) |
 | Hosting | [Vercel](https://vercel.com) (Auto-Deploy aus `main`) |
+| Domain | IONOS (beim Kunden) |
 | Paketmanager | pnpm |
 
 ## 📁 Repository-Struktur
@@ -66,7 +77,7 @@ Es gibt aktuell **kein** Test-Framework, keinen Linter und kein Type-Check-Skrip
 
 - Alle Inhalte und Copy sind **deutsch**.
 - Details zur Architektur, SEO-Struktur und Design-Entscheidungen stehen in [`astro-site/CLAUDE.md`](astro-site/CLAUDE.md).
-- Kontaktdaten von DOMIART (Telefon, WhatsApp, Anschrift) stehen **bewusst nicht im Repo**, sondern auf der [Live-Website](https://domiart-website.vercel.app).
+- Kontaktdaten von DOMIART (Telefon, WhatsApp, Anschrift) stehen **bewusst nicht im Repo**, sondern auf der [Live-Website](https://www.domiart-moresa.de).
 
 ---
 
