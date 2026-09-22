@@ -457,6 +457,22 @@
     }
   });
 
+  /* ---------- Vorher/Nachher-Umschalter (Bild, wie Scheunen-Video) ---------- */
+  document.querySelectorAll(".ba-view").forEach(function (view) {
+    var opts = view.querySelectorAll(".video-switch__opt");
+    opts.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var showAfter = btn.textContent.trim() === "Nachher";
+        view.classList.toggle("is-after", showAfter);
+        opts.forEach(function (b) {
+          var active = b === btn;
+          b.classList.toggle("is-active", active);
+          b.setAttribute("aria-pressed", String(active));
+        });
+      });
+    });
+  });
+
   /* ---------- Galerie-Lightbox ---------- */
   var lightbox = document.querySelector(".lightbox");
   if (lightbox) {
