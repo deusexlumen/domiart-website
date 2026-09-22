@@ -182,21 +182,23 @@ import Base from '../layouts/Base.astro';
     <section id="vorher-nachher" class="section">
       <div class="container">
         <div class="ba-wrap">
-          <div class="ba-slider" data-reveal aria-label="Vorher-Nachher-Vergleich: Diele">
+          <div class="ba-view" data-reveal aria-label="Vorher-Nachher-Vergleich: Diele">
             <img src="/assets/img/flur-vorher.webp" width="1512" height="2016" alt="Diele im Rohzustand vor der Renovierung — alte Wandfliesen entfernt, Rohbau sichtbar" loading="lazy">
-            <img class="ba-slider__after" src="/assets/img/flur-nachher.webp" width="908" height="2016" alt="Diele nach der Renovierung — neuer Boden in Holzoptik, frisch gestrichene Wände" loading="lazy">
-            <span class="ba-slider__label ba-slider__label--before">Vorher</span>
-            <span class="ba-slider__label ba-slider__label--after">Nachher</span>
-            <div class="ba-slider__handle" role="slider" tabindex="0" aria-label="Vorher-Nachher-Regler" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+            <img class="ba-view__after" src="/assets/img/flur-nachher.webp" width="908" height="2016" alt="Diele nach der Renovierung — neuer Boden in Holzoptik, frisch gestrichene Wände" loading="lazy">
+            <div class="video-switch" role="group" aria-label="Vorher oder Nachher zeigen">
+              <button type="button" class="video-switch__opt is-active" aria-pressed="true">Vorher</button>
+              <button type="button" class="video-switch__opt" aria-pressed="false">Nachher</button>
+            </div>
           </div>
 
           <div class="ba-copy" data-reveal>
             <p class="eyebrow">Vorher / Nachher</p>
             <h2 class="display-lg">Sehen Sie selbst,<br>was möglich ist.</h2>
             <p class="lead">
-              Ziehen Sie den Regler und erleben Sie den Unterschied: Aus
-              Baustelle wird Zuhause. Genau diese Verwandlung liefern wir —
-              bei jedem Projekt, in jedem Raum.
+              Ein Klick genügt: Wählen Sie „Vorher" oder „Nachher" und
+              erleben Sie den Unterschied: Aus Baustelle wird Zuhause.
+              Genau diese Verwandlung liefern wir — bei jedem Projekt,
+              in jedem Raum.
             </p>
             <ul class="ba-facts">
               <li>
@@ -225,12 +227,13 @@ import Base from '../layouts/Base.astro';
               drumherum ist neu, vom Estrich bis zum letzten Anstrich.
             </p>
           </div>
-          <div class="ba-slider" data-reveal aria-label="Vorher-Nachher-Vergleich: Altbau-Diele mit Doppeltür">
+          <div class="ba-view" data-reveal aria-label="Vorher-Nachher-Vergleich: Altbau-Diele mit Doppeltür">
             <img src="/assets/img/diele-vorher.webp" width="1512" height="2016" alt="Altbau-Diele während der Renovierung — Rohboden mit Werkzeug, die originale Doppeltür mit Glaseinsätzen noch im Bestand" loading="lazy">
-            <img class="ba-slider__after" src="/assets/img/projekte/projekt-2.webp" width="900" height="1857" alt="Dieselbe Altbau-Diele nach dem Ausbau — aufgearbeitete Doppeltür, neuer Eichenboden, frisch gestrichene Wände" loading="lazy">
-            <span class="ba-slider__label ba-slider__label--before">Vorher</span>
-            <span class="ba-slider__label ba-slider__label--after">Nachher</span>
-            <div class="ba-slider__handle" role="slider" tabindex="0" aria-label="Vorher-Nachher-Regler" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+            <img class="ba-view__after" src="/assets/img/projekte/projekt-2.webp" width="900" height="1857" alt="Dieselbe Altbau-Diele nach dem Ausbau — aufgearbeitete Doppeltür, neuer Eichenboden, frisch gestrichene Wände" loading="lazy">
+            <div class="video-switch" role="group" aria-label="Vorher oder Nachher zeigen">
+              <button type="button" class="video-switch__opt is-active" aria-pressed="true">Vorher</button>
+              <button type="button" class="video-switch__opt" aria-pressed="false">Nachher</button>
+            </div>
           </div>
         </div>
       </div>
