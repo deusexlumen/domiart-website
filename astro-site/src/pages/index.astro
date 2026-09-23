@@ -171,9 +171,11 @@ import Base from '../layouts/Base.astro';
             <p class="review__meta">Aziz D. · 2025 · Google</p>
           </li>
         </ul>
-        <a class="reviews__link" href="https://www.google.com/maps?cid=5260059026546612538" target="_blank" rel="noopener">
-          Alle Bewertungen auf Google →
-        </a>
+        <p class="reviews__note">
+          Gekürzte Auszüge aus unserem Google-Unternehmensprofil. Wir prüfen die
+          Echtheit der Bewertungen nicht selbst; Google veröffentlicht sie ohne Prüfung.
+          <a class="reviews__link" href="https://www.google.com/maps?cid=5260059026546612538" target="_blank" rel="noopener">Alle Bewertungen auf Google →</a>
+        </p>
       </div>
     </section>
 
@@ -335,21 +337,43 @@ import Base from '../layouts/Base.astro';
     </section>
 
     <!-- ================= Leistungen (kompakt) ================= -->
+    <!-- Nur Randvollstaendigkeit: drei Deeplinks + Gewerkenamen einmal. -->
     <section id="leistungen" class="services-line" aria-labelledby="leistungen-title">
       <div class="container">
-        <h2 id="leistungen-title" class="eyebrow">Unsere Leistungen</h2>
-        <ul class="services-line__list">
-          <li>Modernisierung</li>
-          <li><a href="/renovierung-dortmund/">Renovierung</a></li>
-          <li>Sanierung</li>
-          <li>Innenausbau</li>
-          <li><a href="/fliesenarbeiten-dortmund/">Fliesenarbeiten</a></li>
-          <li><a href="/trockenbau-dortmund/">Trockenbau</a></li>
-          <li>Malerarbeiten</li>
-          <li>Verputzarbeiten</li>
-          <li>Tapezierarbeiten</li>
-          <li>Entkernung &amp; Entrümpelung</li>
-        </ul>
+        <div class="services-line__head">
+          <p class="eyebrow">Unsere Leistungen</p>
+          <h2 id="leistungen-title" class="services-line__title">Ein Partner. Alle Gewerke.</h2>
+        </div>
+
+        <div class="services-line__links">
+          <a href="/renovierung-dortmund/" class="services-line__card">
+            <span class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="13" height="5" rx="1"/><path d="M16 6.5h3A1.5 1.5 0 0 1 20.5 8v2a1.5 1.5 0 0 1-1.5 1.5h-7.5V14"/><rect x="10" y="14" width="3" height="6.5" rx="1"/></svg>
+            </span>
+            <strong>Renovierung</strong>
+            <span class="services-line__arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/fliesenarbeiten-dortmund/" class="services-line__card">
+            <span class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="6.5" rx="1"/><rect x="13" y="4" width="8" height="6.5" rx="1"/><rect x="3" y="13.5" width="8" height="6.5" rx="1"/><rect x="13" y="13.5" width="8" height="6.5" rx="1"/></svg>
+            </span>
+            <strong>Fliesenarbeiten</strong>
+            <span class="services-line__arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/trockenbau-dortmund/" class="services-line__card">
+            <span class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4" width="15" height="16" rx="1"/><path d="M4.5 12h15M9.5 4v8M14.5 12v8"/></svg>
+            </span>
+            <strong>Trockenbau</strong>
+            <span class="services-line__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <p class="services-line__more">
+          <span>Außerdem aus einer Hand:</span>
+          Modernisierung · Sanierung · Innenausbau · Malerarbeiten ·
+          Verputzarbeiten · Tapezierarbeiten · Entkernung &amp; Entrümpelung
+        </p>
       </div>
     </section>
 
