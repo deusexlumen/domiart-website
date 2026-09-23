@@ -3235,3 +3235,31 @@ body.nav-open .nav-toggle span::after {
   height: 18px;
   flex: none;
 }
+
+/* ---------- Startseite mobil: weniger Scroll-Last ---------- */
+@media (max-width: 700px) {
+  #ueber-uns.section,
+  #anfrage.section,
+  #projekte.section,
+  #faq.section,
+  #kontakt.section {
+    padding-block: 56px;
+  }
+
+  #ueber-uns .about__copy h2,
+  #anfrage .section-head,
+  #projekte .section-head,
+  #faq .section-head {
+    margin-bottom: 26px;
+  }
+
+  /* Telefon + E-Mail stehen im Kontakt schon als grosse Nummer und  */
+  /* Buttons — die Karten wiederholen sie nur.                        */
+  #kontakt .contact-cards a.contact-card {
+    display: none;
+  }
+
+  #kontakt .contact-cards {
+    margin-top: 28px;
+  }
+}
