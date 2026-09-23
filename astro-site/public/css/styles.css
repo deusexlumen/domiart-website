@@ -2811,3 +2811,371 @@ body.nav-open .nav-toggle span::after {
 [hidden] {
   display: none !important;
 }
+
+/* ==========================================================================
+   Startseite kompakt (Bestandsumbau): Video-Hero, Bewertungen,
+   Fliesen-Band, Leistungszeile
+   ========================================================================== */
+
+/* ---------- Hero mit Scheunen-Video ---------- */
+/* Mobile first: Titel → Video → Claim + CTAs, alles im ersten Screen.  */
+/* Die Videos sind Querformat (636×360 / 848×480) — daher 16:9-Rahmen  */
+/* statt vollflaechigem Cover, sonst wird das Bild matschig.           */
+.hero--video {
+  padding-top: 96px;
+  padding-bottom: 40px;
+}
+
+.hero--video .container {
+  grid-template-columns: 1fr;
+  grid-template-areas: "content" "video" "claim";
+  gap: 22px;
+}
+
+.hero--video .hero__content { grid-area: content; }
+.hero--video .hero__claim { grid-area: claim; }
+
+.hero--video .hero__content .eyebrow {
+  margin-bottom: 14px;
+}
+
+.hero--video h1 {
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  margin-bottom: 0;
+}
+
+.hero--video .hero__sub {
+  margin-bottom: 22px;
+  color: var(--white);
+}
+
+.hero--video .hero__actions {
+  margin-bottom: 0;
+}
+
+.hero__video {
+  grid-area: video;
+  aspect-ratio: 16 / 9;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--line-dark);
+}
+
+/* Grosse Trefferflaeche fuer den Umschalter */
+.hero__video .video-frame__bar {
+  padding: 12px;
+}
+
+.hero__video .video-switch {
+  flex: 1;
+}
+
+.hero__video .video-switch__opt {
+  flex: 1;
+  min-height: 48px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .hero--video .hero__actions .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1001px) {
+  .hero--video .container {
+    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-areas: "content video" "claim video";
+    align-items: end;
+    column-gap: clamp(40px, 5vw, 72px);
+  }
+
+  .hero--video .hero__claim {
+    align-self: start;
+  }
+}
+
+/* ---------- Drei Beweise ---------- */
+.trust-band__grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 800px) {
+  .trust-band__grid--3 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ---------- Bewertungen (statisch) ---------- */
+.reviews {
+  background: var(--white);
+  padding-block: clamp(36px, 5vw, 56px);
+  border-bottom: 1px solid var(--line);
+}
+
+.reviews__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 24px;
+  margin-bottom: 22px;
+}
+
+.reviews__score {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.stars {
+  color: #f5b301;
+  letter-spacing: 0.08em;
+}
+
+.reviews__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 22px;
+  border-radius: var(--radius);
+  background: var(--off);
+}
+
+.review__text p {
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.review__meta {
+  margin-top: auto;
+  font-size: 0.82rem;
+  color: var(--grey);
+}
+
+.reviews__link {
+  display: inline-block;
+  margin-top: 18px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.reviews__link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+  .reviews__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Handwerk: Fliesen-Band ---------- */
+/* Ein Crop, kein Kachel-Repeat. Overlay dunkel genug fuer Weiss-Text, */
+/* hell genug, dass Fugenbild und Glasur lesbar bleiben.              */
+.tile-band {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy);
+  color: var(--white);
+  padding-block: clamp(90px, 14vw, 170px);
+}
+
+.tile-band__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.tile-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10, 26, 51, 0.82) 0%, rgba(10, 26, 51, 0.55) 60%, rgba(10, 26, 51, 0.3) 100%);
+}
+
+.tile-band .container {
+  position: relative;
+  z-index: 1;
+}
+
+.tile-band__line {
+  margin-top: 16px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.tile-band__line .accent {
+  color: var(--azure-light);
+}
+
+@media (max-width: 700px) {
+  .tile-band::after {
+    background: rgba(10, 26, 51, 0.68);
+  }
+}
+
+/* ---------- Anfrage naeher an den Hero-Beweis ---------- */
+.configurator--tight {
+  padding-block: clamp(56px, 8vw, 110px);
+}
+
+.configurator--tight .section-head {
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+/* ---------- Projekte: drei Belege ---------- */
+.gallery-grid--home .gallery-item {
+  aspect-ratio: 4 / 5;
+}
+
+@media (max-width: 700px) {
+  .gallery-grid--home .gallery-item {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- Inhaber-Block: Ablauf in drei Zeilen ---------- */
+.about__steps {
+  display: grid;
+  gap: 10px;
+  margin-top: 26px;
+  padding-left: 1.2em;
+  color: var(--grey);
+}
+
+.about__steps strong {
+  color: var(--ink);
+}
+
+/* ---------- Leistungen als Zeile ---------- */
+.services-line {
+  padding-block: clamp(40px, 6vw, 64px);
+  background: var(--white);
+  border-top: 1px solid var(--line);
+}
+
+.services-line__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.services-line__list li {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.services-line__list a {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.services-line__list a::after {
+  content: " →";
+}
+
+.services-line__list a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) and (min-width: 701px) {
+  .gallery-grid--home {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Schalter-Leiste unter dem Video statt darueber: bei 16:9 auf Mobile */
+/* wuerde sie sonst die halbe Bildhoehe verdecken.                    */
+.hero__video {
+  aspect-ratio: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__video video {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  display: block;
+}
+
+.hero__video .video-frame__bar {
+  position: static;
+  background: var(--navy-2);
+}
+
+@media (max-width: 1000px) {
+  .hero--video {
+    align-items: flex-start;
+    min-height: 0;
+  }
+}
+
+/* Projekte: auf Mobile als Dreier-Reihe statt 2+1 */
+@media (max-width: 700px) {
+  .gallery-grid--home {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 8px;
+  }
+
+  .gallery-grid--home .gallery-item {
+    aspect-ratio: 3 / 4;
+  }
+
+  .gallery-grid--home .gallery-item__cat {
+    display: none;
+  }
+}
+
+/* Fliesen-Band: neutrales statt navy Overlay, damit die Terrakotta-  */
+/* Glasur ihre Farbe behaelt.                                          */
+.tile-band::after {
+  background: linear-gradient(90deg, rgba(18, 12, 10, 0.72) 0%, rgba(18, 12, 10, 0.4) 65%, rgba(18, 12, 10, 0.15) 100%);
+}
+
+@media (max-width: 700px) {
+  .tile-band::after {
+    background: linear-gradient(180deg, rgba(18, 12, 10, 0.2) 0%, rgba(18, 12, 10, 0.62) 100%);
+  }
+
+  .tile-band .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 220px;
+  }
+}
+
+/* Footer: Facebook-Link hatte kein Styling — SVG lief auf volle Breite */
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-social svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}

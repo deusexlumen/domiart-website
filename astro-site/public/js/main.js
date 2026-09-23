@@ -304,18 +304,7 @@
       heroTl
         .to(".hero__sub", { opacity: 1, y: 0, duration: 0.9 }, 0.55)
         .to(".hero__actions", { opacity: 1, y: 0, duration: 0.9 }, 0.7)
-        .to(".hero__meta", { opacity: 1, y: 0, duration: 0.9 }, 0.85)
-        .to(
-          ".hero__card--main",
-          { opacity: 1, y: 0, scale: 1, duration: 1.2 },
-          0.4
-        )
-        .to(
-          ".hero__card--float",
-          { opacity: 1, y: 0, scale: 1, duration: 1.1 },
-          0.7
-        )
-        .to(".hero__badge", { opacity: 1, y: 0, duration: 0.8 }, 0.95);
+        .to(".hero__video", { opacity: 1, y: 0, duration: 1 }, 0.35);
     }
 
     /* Section-Heads: Word-Stagger-Reveal */
@@ -584,6 +573,14 @@
     video.addEventListener("pause", syncIcons);
     video.addEventListener("ended", syncIcons);
     syncIcons();
+
+    /* Hero: stumm im Loop starten — ausser bei reduced motion (dann nur Poster) */
+    if (videoFrame.classList.contains("hero__video") && !prefersReducedMotion) {
+      var autoStart = video.play();
+      if (autoStart && typeof autoStart.catch === "function") {
+        autoStart.catch(syncIcons);
+      }
+    }
 
     /* Vorher/Nachher-Umschalter: tauscht Quelle + Poster, startet direkt */
     var switchOpts = videoFrame.querySelectorAll(".video-switch__opt");
